@@ -12,30 +12,29 @@ public class GameManager : Singleton<GameManager> {
 
     void Start() {
         if (isTestMode) { return; }
-        SceneManager.LoadScene(1); // load menu
+        SceneManager.LoadScene("mainMenu"); // load menu
         DontDestroyOnLoad(gameObject);
-        PlayerManager.OnAPress += StartCharacterSelection;
     }
 
     public void StartCharacterSelection() {
         if (isGameInProgress) { return; }
         isGameInProgress = true;
-        SceneManager.LoadScene(2); // load character selection
+        SceneManager.LoadScene("selectCharacter"); // load character selection
     }
 
     public void StartMetagameSelection() {
-        SceneManager.LoadScene(3); // load metagame selection
+        SceneManager.LoadScene("selectMetagame"); // load metagame selection
     }
 
     public void StartMetagame() {
-        var mm = MetagameManager.Instance;        
-        DontDestroyOnLoad(mm);        
-        SceneManager.LoadScene(4); // load metagame
+        var mm = MetagameManager.Instance;
+        DontDestroyOnLoad(mm);
+        SceneManager.LoadScene("metagame1"); // load metagame
         mm.Initialise(metagame1Data);
     }
 
     public void EndMetagame() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("mainMenu");
         Destroy(MetagameManager.Instance.gameObject);
         isGameInProgress = false;
     }

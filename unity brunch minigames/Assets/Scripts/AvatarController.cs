@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class AvatarController : MonoBehaviour {
 
+    public int PlayerIndex;
     public float speed;
+
+    private Player player;
 
     void Start() {
         PlayerManager.OnXAxis += MoveX;
         PlayerManager.OnYAxis += MoveY;
+
+        player = PlayerManager.GetPlayer(PlayerIndex);
     }
 
     void OnDestroy() {
@@ -24,5 +29,7 @@ public class AvatarController : MonoBehaviour {
         transform.position += new Vector3(0, 0, y * Time.deltaTime * speed);
     }
 
-
+    void Update() {
+        transform.position += player.GetInputAxis() * Time.deltaTime * speed;
+    }
 }
