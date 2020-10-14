@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4247886221335029802}
   - component: {fileID: 5264460872500612082}
-  - component: {fileID: 8027225159969719175}
+  - component: {fileID: 1439802161655932681}
   m_Layer: 0
   m_Name: VictoryZone
   m_TagString: Untagged
@@ -125,7 +125,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8027225159969719175
+--- !u!114 &1439802161655932681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,6 +134,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6323570518891618760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b499fb977cbd2104db2890634210dd77, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b7e8a2cbc47bf54a8b97e49f0c123dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
