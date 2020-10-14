@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class LinearMetagame : MonoBehaviour {
 
-    private int minigameIndex = 0;
+    [ReadOnly] public int minigameIndex = 0;
 
     public List<string> minigameScenes;
 
     private void Start() {
         MetagameManager.Instance.LoadMinigame(minigameScenes[0]);
         MetagameManager.OnEndMinigame += NextGame;
+    }
+
+    private void OnDestroy() {
+        MetagameManager.OnEndMinigame -= NextGame;
     }
 
     public void NextGame() {

@@ -111,10 +111,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 678, y: 342}
+  m_MaxSize: {x: 12003, y: 8042}
   vertical: 1
-  controlID: 54
+  controlID: 16
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,10 +136,10 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 678, y: 342}
+  m_MaxSize: {x: 12003, y: 8042}
   vertical: 0
-  controlID: 55
+  controlID: 17
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,10 +161,10 @@ MonoBehaviour:
     y: 0
     width: 1309
     height: 947
-  m_MinSize: {x: 403, y: 492}
-  m_MaxSize: {x: 10001, y: 14042}
+  m_MinSize: {x: 403, y: 342}
+  m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
-  controlID: 56
+  controlID: 51
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 57
+  controlID: 52
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -262,14 +262,14 @@ MonoBehaviour:
     y: 670
     width: 1309
     height: 277
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -289,8 +289,8 @@ MonoBehaviour:
     y: 0
     width: 611
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -419,9 +419,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ec370000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 24affffffab0ffff80b3ffff44b5fffff8bdffff42c3ffff38c8ffff5cc8ffffbcc8ffff32c9fffffccaffff02cbffff2ccbffff3ecbffff48cbffff4ecbffffc6ceffff96cfffffcad0ffff90d3ffffccd4ffff0ad5ffff86d5ffffe8d6ffff7ed8ffffa4d9ffffaed9ffffc0d9ffffc6ddffffe8defffff2deffff60dfffff6edfffff7cdfffff86dfffff44e0ffffc2e0ffffe6e0fffff2e0ffff0ce1ffff80e1fffface1ffffe8e1fffffce1ffff10e2ffff1ce2ffff2ee2ffff94e2ffffbee2ffff28e3fffff6e3ffff92e5ffff88e6ffffd6e6ffff5ee7ffff7ee7ffff7aecffffe0ecffff74edffff80edffff8aedffff0eefffff18efffffbef1ffffc4f1ffffcef2ffffdaf2fffff4f2ffff1cf3ffff50f3ffff5af3ffff40f6ffff8af7ffffaef7ffffbaf7ffffc4f7ffffcef7ffffdcf7ffffaaf8ffff20f9ffff34fafffff4ffffff9a390000fa3a00002c3e0000d8400000d861000066640000
+      m_ExpandedIDs: c8edffff7ceeffffb0efffffb8effffff6f1fffffef1ffff36f3ffff44f3ffff48f3ffff82f3ffffecf3fffff4f3ffff98f6ffff58f7ffff88f8ffffd8f9ffff48faffff62fbfffff4ffffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -599,34 +599,34 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/minigames
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/minigames
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Tablespoon\Desktop\brunchminigames\unity brunch minigames
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 72}
-    m_SelectedIDs: 92380000
-    m_LastClickedID: 14482
-    m_ExpandedIDs: 00000000283700003237000034370000883e000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: f6360000
+    m_LastClickedID: 14070
+    m_ExpandedIDs: 00000000e8360000f636000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: minigames
+      m_OriginalName: minigames
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 14074
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -640,7 +640,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000028370000
+    m_ExpandedIDs: 00000000e8360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -665,8 +665,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 36f3ffff
+    m_LastClickedInstanceID: -3274
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c22d0000822e0000a87c00005c270000349c0000706b0100a86a0100525600004e6500003e430000fa5c000080300100bab501005a61000034610000ae4b0000ca4c00005e8e000000550000dc4601006a86020014ee000074490000b6530000f452000092670000da670000cc520000fe67000000000000bac70000d26e00006e4b0000
     m_RenameOverlay:

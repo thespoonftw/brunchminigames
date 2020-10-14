@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/metagames/metaLinear.unity
     guid: 3456d6aca2558b6409454ef4401a5334
   - enabled: 1
-    path: Assets/Scenes/metagames/metaAsteroids.unity
+    path: Assets/Scenes/metagames/metaAsteroid.unity
     guid: 227735d4c5a10f546a1619c9c1cf1bf7
   - enabled: 1
     path: Assets/Scenes/minigames/miniTest1.unity

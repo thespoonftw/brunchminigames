@@ -17,7 +17,7 @@ public class CharacterSelectManager : MonoBehaviour {
     private void FixedUpdate() {
         var stringBuilder = "";
         for (int i = 0; i < PlayerManager.PlayerCount; i++) {
-            var p = PlayerManager.GetPlayer(0);
+            var p = PlayerManager.GetPlayer(i);
             var type = p.isKeyboard ? "Keyboard" : "Xbox";
             stringBuilder += "Player " + (i + 1) + ": " + type + "\n";
         }
