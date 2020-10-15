@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/minigames/miniTest2.unity
     guid: 523ec11400334ce4699b77bff6ffd8a6
+  - enabled: 1
+    path: Assets/Scenes/minigames/miniHiddenMaze.unity
+    guid: 66f5b92299949854e81b582f6cfb19be
   m_configObjects: {}
