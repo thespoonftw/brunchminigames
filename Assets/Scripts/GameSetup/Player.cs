@@ -31,6 +31,10 @@ public class Player
         return gamepad.aButton.wasPressedThisFrame;
     }
 
+    public bool IsActionButtonDown() {
+        return gamepad.aButton.isPressed;
+    }
+
     // Get current axis this frame.
     public Vector3 GetInputAxis() {
         if (isKeyboard) {
