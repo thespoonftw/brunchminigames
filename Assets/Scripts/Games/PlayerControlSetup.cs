@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControlSetup : MonoBehaviour
-{
+public class PlayerControlSetup : MonoBehaviour {
     // PlayerPrefab is a GameObject with a PlayerControlComponent script attached to it.
     public GameObject PlayerPrefab;
     public Vector3[] SpawnPositions;

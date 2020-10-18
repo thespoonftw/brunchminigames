@@ -24,7 +24,11 @@ public class Player
     }
 
     public void OnActionButtonDown() {
+        
+    }
 
+    public bool IsActionButtonPressed() {
+        return gamepad.aButton.wasPressedThisFrame;
     }
 
     // Get current axis this frame.

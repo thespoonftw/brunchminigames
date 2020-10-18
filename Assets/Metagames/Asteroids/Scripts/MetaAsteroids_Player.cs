@@ -22,7 +22,12 @@ public class MetaAsteroids_Player : MonoBehaviour
     public float MinMoveSpeed = 0f;
     public float MaxMoveSpeed = 10f;
 
+    // Variables to do with shooting
+    public float BulletSpawnDistance;
+    public float BulletShootSpeed;
+
     private Player player;
+    private ObjectPool bulletPool;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,8 @@ public class MetaAsteroids_Player : MonoBehaviour
         player = GetComponent<PlayerControlComponent>().GetPlayer();
         GetComponent<SpriteRenderer>().color = ShipOutlineColors[player.id];
         BackSprite.GetComponent<SpriteRenderer>().color = ShipPlayerColors[player.id];
+
+        bulletPool = GameObject.Find("Bullet Pool").GetComponent<ObjectPool>();
     }
 
     // Update is called once per frame
@@ -42,12 +49,25 @@ public class MetaAsteroids_Player : MonoBehaviour
         float moveMag = Mathf.Clamp01((mag - TurnZoneRadius) / (MoveZoneRadius - TurnZoneRadius));
 
         float rotateSpeed = Mathf.Lerp(MinTurnSpeed, MaxTurnSpeed, rotateMag);
-        Debug.Log(rotateSpeed);
 
         float angle = Mathf.Atan2(-input.y, -input.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * rotateSpeed);
 
         transform.position = transform.position + transform.right * Mathf.Lerp(MinMoveSpeed, MaxMoveSpeed, moveMag) * Time.deltaTime * -1f;
+
+        if (player.IsActionButtonPressed()) {
+            Shoot();
+        }
+    }
+
+    void Shoot() {
+        GameObject b = bulletPool.GetObject();
+        MetaAsteroids_Bullet bullet = b.GetComponent<MetaAsteroids_Bullet>();
+        bullet.Shoot(
+            transform.position - transform.right * BulletSpawnDistance,
+            -transform.right,
+            BulletShootSpeed    
+        );
     }
 }
