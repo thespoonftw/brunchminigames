@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Meta Games/Asteroids/AsteroidsMetaGame.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
