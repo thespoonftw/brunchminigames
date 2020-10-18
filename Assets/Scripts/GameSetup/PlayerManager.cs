@@ -6,11 +6,13 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour {
+    public static Color[] PlayerColors;
 
     //public static event Action OnAPress;
     //public static event Action<float> OnXAxis;
     //public static event Action<float> OnYAxis;
     public static int PlayerCount { get { return players.Count; } }
+    public static bool IsTestMode = true;
 
     private static List<Player> players = new List<Player>();
     private static int id = 0;
@@ -27,6 +29,17 @@ public class PlayerManager : MonoBehaviour {
     public static Player GetPlayer(int index) {
         if (index >= players.Count) { return null; } 
         return players[index];
+    }
+
+    public static List<Player> GetPlayers() {
+        // If it's test mode then just cheat and initialise players with the current list of gamepads.
+        if (IsTestMode) {
+            foreach (Gamepad g in Gamepad.all) {
+                Player p = PlayerManager.RegisterPlayer(g);
+            }
+        }
+
+        return players;
     }
 
     void Update()  {

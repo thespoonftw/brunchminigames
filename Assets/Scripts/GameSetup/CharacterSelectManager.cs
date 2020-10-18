@@ -8,10 +8,16 @@ using UnityEngine.UI;
 public class CharacterSelectManager : MonoBehaviour {
 
     private List<Gamepad> gamepads = new List<Gamepad>();
+    private List<Keyboard> keyboards = new List<Keyboard>();
     [SerializeField] Text playerListText;
 
     public void Start() {
         playerListText.text = "";
+        
+        // If PlayerManager.IsTestMode is set to false, it means we've gone via Character Select screen.
+        // This means we have the actual list of players.
+        // Otherwise, when asked PlayerManager will just use the current list of gamepads.
+        PlayerManager.IsTestMode = false;
     }
 
     private void FixedUpdate() {
@@ -33,8 +39,11 @@ public class CharacterSelectManager : MonoBehaviour {
             }
         }
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame) {
-            Player p = PlayerManager.RegisterPlayer(Keyboard.current);
+        if (!keyboards.Contains(Keyboard.current)) {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame) {
+                Player p = PlayerManager.RegisterPlayer(Keyboard.current);
+            }
+            keyboards.Add(Keyboard.current);
         }
         
         var gamepad = Gamepad.current;
