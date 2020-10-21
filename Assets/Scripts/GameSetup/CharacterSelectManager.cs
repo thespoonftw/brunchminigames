@@ -9,7 +9,7 @@ public class CharacterSelectManager : MonoBehaviour {
 
     private List<Gamepad> gamepads = new List<Gamepad>();
     private List<Keyboard> keyboards = new List<Keyboard>();
-    [SerializeField] Text playerListText;
+    [SerializeField] Text playerListText = null;
 
     public void Start() {
         playerListText.text = "";

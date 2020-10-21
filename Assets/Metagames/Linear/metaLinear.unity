@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5701e91f3de76114d821e545bd5f78c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigameIndex: 0
   minigameScenes:
   - miniTest1
   - miniTest2
+  - miniHiddenMaze

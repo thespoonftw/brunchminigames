@@ -6,6 +6,6 @@ using UnityEngine;
 public class VictoryZone : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
-        MinigameManager.Instance.Victory();
+        MetagameManager.Instance.EndMinigame(true);
     }
 }

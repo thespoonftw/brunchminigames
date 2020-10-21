@@ -12,14 +12,14 @@ public class LinearMetagame : MonoBehaviour {
 
     private void Start() {
         MetagameManager.Instance.LoadMinigame(minigameScenes[0]);
-        MetagameManager.OnEndMinigame += NextGame;
+        MetagameManager.OnMinigameEnd += NextGame;
     }
 
     private void OnDestroy() {
-        MetagameManager.OnEndMinigame -= NextGame;
+        MetagameManager.OnMinigameEnd -= NextGame;
     }
 
-    public void NextGame() {
+    public void NextGame(bool isVictorious) {
         minigameIndex++;
         if (minigameIndex >= minigameScenes.Count) {
             MetagameManager.Instance.EndMetagame();
