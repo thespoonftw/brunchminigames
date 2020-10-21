@@ -18,18 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/selectMetagame.unity
     guid: 25808a683ceb9584580d649441566244
   - enabled: 1
-    path: Assets/Scenes/metagames/metaLinear.unity
+    path: Assets/Metagames/Linear/metaLinear.unity
     guid: 3456d6aca2558b6409454ef4401a5334
   - enabled: 1
-    path: Assets/Scenes/metagames/metaAsteroid.unity
-    guid: 227735d4c5a10f546a1619c9c1cf1bf7
+    path: Assets/Metagames/Asteroids/metaAsteroids.unity
+    guid: ca9fbcd94209ba74bb8818d9482c6aee
   - enabled: 1
-    path: Assets/Scenes/minigames/miniTest1.unity
+    path: Assets/Minigames/HiddenMaze/miniHiddenMaze.unity
+    guid: 66f5b92299949854e81b582f6cfb19be
+  - enabled: 1
+    path: Assets/Minigames/Test1/miniTest1.unity
     guid: 7a301eda41b241b46b2295cd4261562f
   - enabled: 1
-    path: Assets/Scenes/minigames/miniTest2.unity
+    path: Assets/Minigames/Test2/miniTest2.unity
     guid: 523ec11400334ce4699b77bff6ffd8a6
-  - enabled: 1
-    path: Assets/Scenes/minigames/miniHiddenMaze.unity
-    guid: 66f5b92299949854e81b582f6cfb19be
   m_configObjects: {}

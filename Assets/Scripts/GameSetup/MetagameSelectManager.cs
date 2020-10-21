@@ -16,7 +16,7 @@ public class MetagameSelectManager : MonoBehaviour {
             LoadMetagame("metaLinear");   
         }
         if (gamepad.bButton.wasPressedThisFrame) {
-            LoadMetagame("metaAsteroid");
+            LoadMetagame("metaAsteroids");
         }
     }
 
