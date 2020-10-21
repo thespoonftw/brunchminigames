@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/*
 [CustomEditor(typeof(PlayerControlSetup))]
 public class PlayerControlSetupEditor : Editor
 {
     void OnSceneGUI() {
         PlayerControlSetup p = target as PlayerControlSetup;
         for (int i = 0; i < p.SpawnPositions.Length; i++) {
-            Vector3 v = p.SpawnPositions[i];
+            Vector3 v = p.SpawnPositions[i].position;
 
             EditorGUI.BeginChangeCheck();
             Vector3 newTargetPos = Handles.PositionHandle(v, Quaternion.identity);
@@ -20,3 +21,4 @@ public class PlayerControlSetupEditor : Editor
         }
     }
 }
+*/

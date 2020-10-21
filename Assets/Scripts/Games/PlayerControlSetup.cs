@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControlSetup : MonoBehaviour {
     // PlayerPrefab is a GameObject with a PlayerControlComponent script attached to it.
     public GameObject PlayerPrefab;
-    public Vector3[] SpawnPositions;
+    public Transform[] SpawnPositions;
 
     // Start is called before the first frame update
     void Start()
@@ -17,10 +17,11 @@ public class PlayerControlSetup : MonoBehaviour {
 
             // If spawn positions are specified, use them.
             if (index < SpawnPositions.Length) {
-                g.transform.position = SpawnPositions[index];
+                g.transform.position = SpawnPositions[index].position;
+                g.transform.rotation = SpawnPositions[index].rotation;
             } else if (SpawnPositions.Length > 0) {
                 // If you've specified some spawn positions, but not enough, we'll use the last in the list but also complain.
-                g.transform.position = SpawnPositions[SpawnPositions.Length - 1];
+                g.transform.position = SpawnPositions[SpawnPositions.Length - 1].position;
                 Debug.LogError("Ran out of spawn positions for the number of players, using the last one.");
             }
 
@@ -42,5 +43,12 @@ public class PlayerControlSetup : MonoBehaviour {
     void Update()
     {
         
+    }
+    
+    // Draws little spheres so you can see where the spawn points are
+    private void OnDrawGizmos() {
+        foreach (var t in SpawnPositions) {
+            Gizmos.DrawSphere(t.position, 0.25f);
+        }
     }
 }
