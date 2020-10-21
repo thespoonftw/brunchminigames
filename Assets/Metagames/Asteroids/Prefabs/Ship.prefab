@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 376941051772024448}
   - component: {fileID: 3110710519381672064}
   - component: {fileID: 4392686372128557817}
+  - component: {fileID: 4671788437760893907}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -116,15 +117,8 @@ MonoBehaviour:
   MaxTurnSpeed: 10
   MinMoveSpeed: 0
   MaxMoveSpeed: 10
-  MoveModWhileShooting: 0.5
-  TurnModWhileShooting: 0.5
-  BulletSpawnDistance: 0.5
-  BulletShootSpeed: 30
-  SinglePressTime: 0.15
-  ShootFrequency: 8
-  FreezeOnMinorHit: 0
-  FreezeOnMajorHit: 0
-  heldTimer: 0
+  MoveMod: 1
+  TurnMod: 1
 --- !u!114 &376941051772024448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +168,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4671788437760893907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376941051772024460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aaf0506b3c1e934bbbd68439c8c14b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShotTypeSingle: 0
+  ShotTypeMulti: 0
+  BulletSpawnDistance: 0.5
+  SinglePressTime: 0.15
+  MultiShot_MG_Spread: 0.1
+  MultiShot_MG_Frequency: 8
+  MultiShot_MG_BulletSpeed: 30
+  MultiShot_MG_MoveMod: 0.5
+  SingleShot_Shotgun_Shots: 5
+  SingleShot_Shotgun_Spread: 0.25
+  SingleShot_Shotgun_Frequency: 1
+  SingleShot_Shotgun_BulletSpeed: 30
 --- !u!1 &376941052306501956
 GameObject:
   m_ObjectHideFlags: 0

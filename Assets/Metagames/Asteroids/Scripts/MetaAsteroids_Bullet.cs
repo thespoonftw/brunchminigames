@@ -35,13 +35,9 @@ public class MetaAsteroids_Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         MetaAsteroids_Asteroid asteroid = col.gameObject.GetComponent<MetaAsteroids_Asteroid>();
-        if (asteroid != null) {
+        if (asteroid != null && asteroid.gameObject.activeSelf) {
             gameObject.SetActive(false);
-            if (asteroid.OnHitByBullet()) {
-                player.BigFreeze();
-            } else {
-                player.SmallFreeze();
-            }
+            asteroid.OnHitByBullet();
         }
     }
 }
