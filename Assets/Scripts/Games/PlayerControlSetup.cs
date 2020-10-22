@@ -30,10 +30,11 @@ public class PlayerControlSetup : MonoBehaviour {
             g.transform.position = spawn.position;
             g.transform.rotation = spawn.rotation;
 
-            // Instantiate copy of the camera and inform the manager
+            // If a camera prefab is set, register it in the CameraManager
             if (CameraPrefab != null) {
-                var cameraGameobject = Instantiate(CameraPrefab.gameObject, spawn.position, spawn.rotation);
-                CameraManager.SetPlayerCamera(cameraGameobject.GetComponent<Camera>(), index);
+                var cameraGameobject = Instantiate(CameraPrefab.gameObject, CameraPrefab.transform.position, CameraPrefab.transform.rotation);
+                var cameraController = CameraManager.Instance.SetPlayerCamera(cameraGameobject.GetComponent<Camera>(), index);
+                cameraController.SetFocus(g);
             }
             
 

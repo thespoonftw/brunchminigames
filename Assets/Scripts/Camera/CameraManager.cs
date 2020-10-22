@@ -7,36 +7,51 @@ using UnityEngine;
 
 class CameraManager : Singleton<CameraManager> {
 
-    static Camera[] cameraArray = new Camera[4];
+    // Get camera 0
+    public CameraController MainCamera { get { return GetCamera(0); } }
 
-    public static CameraController GetCamera(int index = 0) {
+    private Camera[] cameraArray = new Camera[4];
+    private CameraController[] cameraControllerArray = new CameraController[4];
 
-        if (cameraArray[index] == null) {
-            index = 0;
-        }
-
-        if (cameraArray[index].TryGetComponent(out CameraController c)) {
-            return c;
-        } else {
-            return cameraArray[index].gameObject.AddComponent<CameraController>(); ;
-        }
-
+    // Get camera controller for player index
+    public CameraController GetCamera(int index = 0) {
+        return cameraControllerArray[index];
     }
 
-    public static void SetMainCamera(Camera camera) {
+    // Register main camera, clear other cameras
+    public CameraController SetMainCamera(Camera camera) {
         cameraArray[0] = camera;
         cameraArray[1] = null;
         cameraArray[2] = null;
         cameraArray[3] = null;
-    }
-
-    public static void SetPlayerCamera(Camera camera, int index) {
-        cameraArray[index] = camera;
-        camera.gameObject.SetActive(true);
         UpdateArrangement();
+        var go = new GameObject("Main Camera Controller");
+        camera.gameObject.transform.parent = go.transform;
+        var controller = go.AddComponent<CameraController>();
+        cameraControllerArray[0] = controller;
+        cameraControllerArray[1] = null;
+        cameraControllerArray[2] = null;
+        cameraControllerArray[3] = null;
+        return controller;
     }
 
-    private static void UpdateArrangement() {
+    // Register player camera
+    public CameraController SetPlayerCamera(Camera camera, int index) {        
+        camera.gameObject.SetActive(true);        
+        var go = new GameObject("Player " + index + " Camera Controller");
+        camera.gameObject.transform.parent = go.transform;
+        var component = go.AddComponent<CameraController>();
+        cameraArray[index] = camera;
+        UpdateArrangement();
+        cameraControllerArray[index] = component;
+        return component;
+    }
+
+    private void Start() {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void UpdateArrangement() {
         var cameraList = new List<Camera>();
         foreach (var c in cameraArray) {
             if (c != null) {
