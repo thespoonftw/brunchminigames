@@ -14,7 +14,7 @@ public class AvatarController : MonoBehaviour {
 
     void Start() {
         player = GetComponent<PlayerControlComponent>().GetPlayer();
-       //GetComponent<SpriteRenderer>().color = ShipOutlineColors[player.id];
+       //GetComponent<SpriteRenderer>().color = ShipOutlineColors[player.id]; // colors should be implemented at some point
     }
 
     void Update() {
@@ -24,17 +24,6 @@ public class AvatarController : MonoBehaviour {
         if (mag < DeadZoneRadius) { return; }
         transform.position = transform.position + new Vector3(input.x * Time.deltaTime * MoveSpeed, 0, input.y * Time.deltaTime * MoveSpeed);
         transform.rotation = Quaternion.Euler(0, Mathf.Atan2(input.x, input.y) * RADIANS_TO_DEG, 0);
-
-        /*
-        float rotateMag = Mathf.Clamp01((mag - DeadZoneRadius) / (TurnZoneRadius - DeadZoneRadius));
-        float moveMag = Mathf.Clamp01((mag - TurnZoneRadius) / (MoveZoneRadius - TurnZoneRadius));
-        float rotateSpeed = Mathf.Lerp(MinTurnSpeed, MaxTurnSpeed, rotateMag);
-        float angle = Mathf.Atan2(-input.y, -input.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(angle, Vector3.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * rotateSpeed);
-        float moveSpeed = Mathf.Lerp(MinMoveSpeed, MaxMoveSpeed, moveMag);
-        transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime * -1f;
-        */
     }
 
 }

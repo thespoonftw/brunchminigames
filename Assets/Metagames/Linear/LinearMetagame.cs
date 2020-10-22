@@ -6,20 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class LinearMetagame : MonoBehaviour {
 
+    private float nextGameDelay = 3f;
+    private float nextGameCounter = 0f;
+
     [ReadOnly] public int minigameIndex = 0;
 
     public List<string> minigameScenes;
 
     private void Start() {
-        MetagameManager.Instance.LoadMinigame(minigameScenes[0]);
-        MetagameManager.OnMinigameEnd += NextGame;
+        minigameIndex = -1;
+        StartCoroutine(NextMinigameAfterDelay());
+        MetagameManager.OnMinigameEnd += MinigameEnd;
+    }
+
+    private void MinigameEnd(bool isVictorious) {
+        StartCoroutine(NextMinigameAfterDelay());
+    }
+
+    IEnumerator NextMinigameAfterDelay() {
+        yield return new WaitForSeconds(3);
+        NextGame();
     }
 
     private void OnDestroy() {
-        MetagameManager.OnMinigameEnd -= NextGame;
+        MetagameManager.OnMinigameEnd -= MinigameEnd;
     }
 
-    public void NextGame(bool isVictorious) {
+    public void NextGame() {
         minigameIndex++;
         if (minigameIndex >= minigameScenes.Count) {
             MetagameManager.Instance.EndMetagame();

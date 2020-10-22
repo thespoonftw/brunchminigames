@@ -8,10 +8,12 @@ public class MetagameManager : Singleton<MetagameManager> {
 
     [ReadOnly] public string metagameScene;
     [ReadOnly] public string currentMinigameScene;
+    private List<GameObject> disabledMetagameObjects = new List<GameObject>();
 
     public static event Action<bool> OnMinigameEnd; // subscribe to this from your metagame to know when a minigame ends. True = victory, False = defeat
 
     public void Initialise(string metagameScene) {
+        DontDestroyOnLoad(gameObject);
         this.metagameScene = metagameScene;
         SceneManager.LoadScene(metagameScene);
         Debug.Log("metagame loaded: " + metagameScene);
@@ -26,6 +28,12 @@ public class MetagameManager : Singleton<MetagameManager> {
     // call this method from your metagame to load the next minigame
     public void LoadMinigame(string name) {
         currentMinigameScene = name;
+        foreach (var go in SceneManager.GetActiveScene().GetRootGameObjects()) {
+            if (go.activeSelf) { 
+                disabledMetagameObjects.Add(go);
+                go.SetActive(false);
+            }
+        }
         Debug.Log("Loading minigame: " + name);
         StartCoroutine(LoadMinigameAsync(name));
     }
@@ -37,6 +45,9 @@ public class MetagameManager : Singleton<MetagameManager> {
             Time.timeScale = 0;
         }
         else {
+            foreach (var go in disabledMetagameObjects) {
+                go.SetActive(true);
+            }
             SceneManager.UnloadSceneAsync(currentMinigameScene);
             currentMinigameScene = null;
             OnMinigameEnd?.Invoke(isVictorious);

@@ -232,7 +232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &640269315
 GameObject:
@@ -384,7 +384,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &795760547
 GameObject:
@@ -477,7 +477,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 30}
 --- !u!1 &1001211461
 GameObject:
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 1001211463}
   - component: {fileID: 1001211462}
   m_Layer: 0
-  m_Name: PlayerControlSetup
+  m_Name: Setup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,6 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 7987514342104112385, guid: ab4db2e22467d2142b45342a6d5fe745,
     type: 3}
+  CameraPrefab: {fileID: 0}
   SpawnPositions:
   - {fileID: 640269316}
   - {fileID: 3230378}
@@ -531,7 +532,7 @@ Transform:
   - {fileID: 683652914}
   - {fileID: 1704968998}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1138686365
 GameObject:
@@ -702,7 +703,7 @@ PrefabInstance:
     - target: {fileID: 4247886221335029802, guid: cb2aefc633693854ca537bcdf0df5d3d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4247886221335029802, guid: cb2aefc633693854ca537bcdf0df5d3d,
         type: 3}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControlSetup : MonoBehaviour {
     // PlayerPrefab is a GameObject with a PlayerControlComponent script attached to it.
     public GameObject PlayerPrefab;
+    public Camera CameraPrefab;
     public Transform[] SpawnPositions;
 
     // Start is called before the first frame update
@@ -15,15 +16,28 @@ public class PlayerControlSetup : MonoBehaviour {
         foreach (Player p in players) {
             GameObject g = GameObject.Instantiate(PlayerPrefab);
 
+            Transform spawn = null;
             // If spawn positions are specified, use them.
             if (index < SpawnPositions.Length) {
-                g.transform.position = SpawnPositions[index].position;
-                g.transform.rotation = SpawnPositions[index].rotation;
+                spawn = SpawnPositions[index];
+
+            // If you've specified some spawn positions, but not enough, we'll use the last in the list but also complain.
             } else if (SpawnPositions.Length > 0) {
-                // If you've specified some spawn positions, but not enough, we'll use the last in the list but also complain.
-                g.transform.position = SpawnPositions[SpawnPositions.Length - 1].position;
+                spawn = SpawnPositions[SpawnPositions.Length - 1];
                 Debug.LogError("Ran out of spawn positions for the number of players, using the last one.");
             }
+
+            g.transform.position = spawn.position;
+            g.transform.rotation = spawn.rotation;
+
+            // Instantiate copy of the camera and inform the manager
+            if (CameraPrefab != null) {
+                var cameraGameobject = Instantiate(CameraPrefab.gameObject, spawn.position, spawn.rotation);
+                CameraManager.SetPlayerCamera(cameraGameobject.GetComponent<Camera>(), index);
+            }
+            
+
+            
 
             g.name = "Player " + p.id;
 
