@@ -15,6 +15,7 @@ public class PlayerControlSetup : MonoBehaviour {
         int index = 0;
         foreach (Player p in players) {
             GameObject g = GameObject.Instantiate(PlayerPrefab);
+            g.SetActive(true);
 
             Transform spawn = null;
             // If spawn positions are specified, use them.

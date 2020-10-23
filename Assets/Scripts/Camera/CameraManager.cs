@@ -36,7 +36,8 @@ class CameraManager : Singleton<CameraManager> {
     }
 
     // Register player camera
-    public CameraController SetPlayerCamera(Camera camera, int index) {        
+    public CameraController SetPlayerCamera(Camera camera, int index) {
+        if (index > 0) { camera.GetComponent<AudioListener>().enabled = false; }
         camera.gameObject.SetActive(true);        
         var go = new GameObject("Player " + index + " Camera Controller");
         camera.gameObject.transform.parent = go.transform;
