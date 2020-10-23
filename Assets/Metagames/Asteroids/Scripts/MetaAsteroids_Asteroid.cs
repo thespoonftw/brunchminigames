@@ -6,6 +6,7 @@ public class MetaAsteroids_Asteroid : MonoBehaviour {
     public int Health;
     private int actualHealth;
     private Vector3 velocity;
+    private MetaAsteroids_ExplosionManager explosionManager;
 
     private SpriteRenderer sprite;
     private Color targetColor;
@@ -20,7 +21,7 @@ public class MetaAsteroids_Asteroid : MonoBehaviour {
     }
 
     void Start() {
-        
+        explosionManager = GameObject.Find("Explosions").GetComponent<MetaAsteroids_ExplosionManager>();
     }
 
     void Update() {
@@ -41,15 +42,28 @@ public class MetaAsteroids_Asteroid : MonoBehaviour {
         velocity = new Vector3(-transform.position.x, -transform.position.y, 0f) * v;
     }
 
+    void Explode() {
+        explosionManager.Explode(transform.position, 6, 0.4f);
+        gameObject.SetActive(false);
+    }
+
     public bool OnHitByBullet() {
         freezeTimer += FreezeTimeOnHit;
         actualHealth--;
         sprite.color = Color.white;
         if (actualHealth == 0) {
-            gameObject.SetActive(false);
+            Explode();
             return true;
         } else {
             return false;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        MetaAsteroids_Earth earth = col.gameObject.GetComponent<MetaAsteroids_Earth>();
+        if (earth != null) {
+            earth.OnHitByAsteroid();
+            Explode();
         }
     }
 }

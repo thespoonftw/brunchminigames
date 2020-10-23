@@ -27,6 +27,7 @@ public class MetaAsteroids_Player : MonoBehaviour
     private Player player;
 
     private float freezeTimer = 0f;
+    private MetaAsteroids_ExplosionManager explosionManager;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class MetaAsteroids_Player : MonoBehaviour
         player = GetComponent<PlayerControlComponent>().GetPlayer();
         GetComponent<SpriteRenderer>().color = ShipOutlineColors[player.id];
         BackSprite.GetComponent<SpriteRenderer>().color = ShipPlayerColors[player.id];
+        explosionManager = GameObject.Find("Explosions").GetComponent<MetaAsteroids_ExplosionManager>();
     }
 
     // Update is called once per frame
@@ -62,7 +64,25 @@ public class MetaAsteroids_Player : MonoBehaviour
         transform.position = transform.position + transform.right * moveSpeed * Time.deltaTime * -1f;
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        Debug.Log("OnCollisionEnter2D");
+    void OnCollisionEnter2D(Collision2D col) {
+        MetaAsteroids_Asteroid asteroid = col.gameObject.GetComponent<MetaAsteroids_Asteroid>();
+        if (asteroid != null && asteroid.gameObject.activeSelf) {
+            OnHitAsteroid();
+        } else {
+            MetaAsteroids_Bullet bullet = col.gameObject.GetComponent<MetaAsteroids_Bullet>();
+            if (bullet != null && bullet.gameObject.activeSelf) {
+                OnHitByBullet();
+            }
+        }
+    }
+
+    void OnHitByBullet() {
+        Debug.Log("OnHitByBullet!");
+    }
+
+    void OnHitAsteroid() {
+        Debug.Log("OnHitAsteroid!");
+        gameObject.SetActive(false);
+        explosionManager.Explode(transform.position, 6, 0.2f);
     }
 }

@@ -141,7 +141,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.35, y: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   BulletSpawnDistance: 0.5
   SinglePressTime: 0.15
   MultiShot_MG_Spread: 0.1
-  MultiShot_MG_Frequency: 8
+  MultiShot_MG_Frequency: 6
   MultiShot_MG_BulletSpeed: 30
   MultiShot_MG_MoveMod: 0.5
   SingleShot_Shotgun_Shots: 5
