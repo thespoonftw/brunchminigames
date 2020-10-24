@@ -9,26 +9,30 @@ public class MetaAsteroids_AsteroidsManager : MonoBehaviour {
 
     public float AsteroidFrequency = 0.1f;
     public float AsteroidSpeed = 1f;
+    public bool Paused = true;
 
     private float asteroidTimer = 0f;
+    private ObjectPool[] pools;
 
     void Start() {
-        ObjectPool[] pools = GetComponents<ObjectPool>();
+        pools = GetComponents<ObjectPool>();
         smallPool = pools[0];
         mediumPool = pools[1];
         largePool = pools[2];
     }
 
     void Update() {
-        asteroidTimer += Time.deltaTime;
-        while (asteroidTimer >= 1f / AsteroidFrequency) {
-            asteroidTimer -= (1f / AsteroidFrequency);
-            SpawnAsteroid();
+        if (!Paused) {
+            asteroidTimer += Time.deltaTime;
+            while (asteroidTimer >= 1f / AsteroidFrequency) {
+                asteroidTimer -= (1f / AsteroidFrequency);
+                SpawnAsteroid();
+            }
         }
     }
 
-    public void SpawnAsteroid() {
-        GameObject g = largePool.GetObject();
+    public void SpawnAsteroid(int index=0) {
+        GameObject g = pools[index].GetObject();
         g.transform.position = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized * 20f;
         g.GetComponent<MetaAsteroids_Asteroid>().ShootTowardsEarth(AsteroidSpeed);
     }
