@@ -113,7 +113,7 @@ public class GenerateMaze : MonoBehaviour
             }
         }
 
-        Debug.Log(DateTime.Now.Ticks - DateTime.Today.Ticks);
+        Debug.Log((DateTime.Now.Ticks - DateTime.Today.Ticks) % 1000000);
         var rng = new System.Random();
         Vector3 movement = new Vector3 (0.0f, 0.0f, 0.0f);
 
