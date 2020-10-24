@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class BallControl : MonoBehaviour {
 
@@ -20,11 +19,15 @@ public class BallControl : MonoBehaviour {
     private int mazeWidth;
     private int mazeHeight;
 
+    List<Player> players = new List<Player>();
+
     private void Start() {
         maze = transform.parent.GetComponent<GenerateMaze>();
         mazeWidth = maze.mazeWidth;
         mazeHeight = maze.mazeHeight;
         walls = maze.walls;
+        players = PlayerManager.GetPlayers();
+
     }
 
     private void Update() {

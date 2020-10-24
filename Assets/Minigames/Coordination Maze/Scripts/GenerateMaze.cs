@@ -113,6 +113,7 @@ public class GenerateMaze : MonoBehaviour
             }
         }
 
+        Debug.Log(DateTime.Now.Ticks - DateTime.Today.Ticks);
         var rng = new System.Random();
         Vector3 movement = new Vector3 (0.0f, 0.0f, 0.0f);
 
@@ -173,10 +174,6 @@ public class GenerateMaze : MonoBehaviour
 
         }
 
-        Debug.Log(gameState.balls.GetLowerBound(0));
-        Debug.Log(gameState.balls.GetUpperBound(0));
-        Debug.Log(mazeID);
-
         ball = Instantiate(ballPrefab);
         ball.SetParent(transform, false);
         gameState.balls[mazeID] = ball;
@@ -198,7 +195,6 @@ public class GenerateMaze : MonoBehaviour
             Mathf.Sign(ball.localPosition.x) == -Mathf.Sign(startPosition.x) &&
             Mathf.Abs(ball.localPosition.z) > Mathf.Abs(startPosition.z) &&
             Mathf.Sign(ball.localPosition.z) == -Mathf.Sign(startPosition.z)) {
-            //Debug.Log("Player " + currentPlayer + " Wins!");
             ball.GetComponent<Rigidbody>().drag = 1000;
             ball.GetComponent<Rigidbody>().angularDrag = 1000;
 
