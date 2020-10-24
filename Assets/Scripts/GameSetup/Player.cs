@@ -27,11 +27,84 @@ public class Player
         
     }
 
-    public bool IsActionButtonPressed() {
+    public bool WasActionButtonPressedThisFrame() {
         return gamepad.aButton.wasPressedThisFrame;
     }
 
-    public bool IsActionButtonDown() {
+    public bool WasLeftPressedThisFrame() {
+        if (isKeyboard) {
+            return keyboard.leftArrowKey.wasPressedThisFrame;
+        }
+        else {
+            return gamepad.leftStick.left.wasPressedThisFrame;
+        }
+    }
+
+    public bool WasRightPressedThisFrame() {
+        if (isKeyboard) {
+            return keyboard.rightArrowKey.wasPressedThisFrame;
+        }
+        else {
+            return gamepad.leftStick.right.wasPressedThisFrame;
+        }
+    }
+
+    public bool WasUpPressedThisFrame() {
+        if (isKeyboard) {
+            return keyboard.upArrowKey.wasPressedThisFrame;
+        }
+        else {
+            return gamepad.leftStick.up.wasPressedThisFrame;
+        }
+    }
+
+    public bool WasDownPressedThisFrame() {
+        if (isKeyboard) {
+            return keyboard.downArrowKey.wasPressedThisFrame;
+        }
+        else {
+            return gamepad.leftStick.down.wasPressedThisFrame;
+        }
+    }
+
+    public bool IsLeftPressed() {
+        if (isKeyboard) {
+            return keyboard.leftArrowKey.isPressed;
+        }
+        else {
+            return gamepad.leftStick.left.isPressed;
+        }
+    }
+
+    public bool IsRightPressed() {
+        if (isKeyboard) {
+            return keyboard.rightArrowKey.isPressed;
+        }
+        else {
+            return gamepad.leftStick.right.isPressed;
+        }
+    }
+
+    public bool IsUpPressed() {
+        if (isKeyboard) {
+            return keyboard.upArrowKey.isPressed;
+        }
+        else {
+            return gamepad.leftStick.up.isPressed;
+        }
+    }
+
+    public bool IsDownPressed() {
+        if (isKeyboard) {
+            return keyboard.downArrowKey.isPressed;
+        }
+        else {
+            return gamepad.leftStick.down.isPressed;
+        }
+    }
+
+
+    public bool IsActionButtonPressed() {
         return gamepad.aButton.isPressed;
     }
 
