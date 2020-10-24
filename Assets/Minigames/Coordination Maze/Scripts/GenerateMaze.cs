@@ -36,6 +36,8 @@ public class GenerateMaze : MonoBehaviour
 
     private GameState gameState;
 
+    private const int cstOneMillion = 1000000;
+
     float outerWallScaleY = 0.8f;
     float outerWallScaleZ = 0.4f;
 
@@ -113,7 +115,7 @@ public class GenerateMaze : MonoBehaviour
             }
         }
 
-        Debug.Log((DateTime.Now.Ticks - DateTime.Today.Ticks) % 1000000);
+        Debug.Log((DateTime.Now.Ticks - DateTime.Today.Ticks) % cstOneMillion);
         var rng = new System.Random();
         Vector3 movement = new Vector3 (0.0f, 0.0f, 0.0f);
 
