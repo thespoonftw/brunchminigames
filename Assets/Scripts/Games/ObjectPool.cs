@@ -22,6 +22,10 @@ public class ObjectPool : MonoBehaviour
         return g;
     }
 
+    public List<GameObject> GetAllObjects() {
+        return prefabs;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

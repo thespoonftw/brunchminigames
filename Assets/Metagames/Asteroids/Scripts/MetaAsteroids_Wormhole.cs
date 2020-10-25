@@ -21,6 +21,11 @@ public class MetaAsteroids_Wormhole : MonoBehaviour {
     public MetaAsteroids_WormholeAppearance[] PieceAppearances;
     public float Frequency;
 
+    public void KillMe() {
+        pool.KillAll();
+        Destroy(gameObject);
+    }
+
     void Start() {
         pool = GameObject.Find("Wormhole Pool").GetComponent<MetaAsteroids_WormholePool>();
         for (int i = 0; i < PieceAppearances.Length; i++) {

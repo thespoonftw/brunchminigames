@@ -722,7 +722,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Phases:
   - bpm: 60
-    contents: w-s-m-l
+    contents: l-l-l-mmmmmm---w
+  - bpm: 80
+    contents: llll---llll---lmlmlm---w
   Wormhole: {fileID: 4408903134552384198, guid: 5df76ef64346c724897a2df4741647f6,
     type: 3}
   MinigameScenes:

@@ -21,6 +21,12 @@ public class MetaAsteroids_WormholePool : MonoBehaviour {
         return e;
     }
 
+    public void KillAll() {
+        for (int i = 0; i < pieces.Count; i++) {
+            pieces[i].gameObject.SetActive(false);
+        }
+    }
+
     // Start is called before the first frame update
     void Start() {
         for (int i = 0; i < InitialPoolSize; i++) {

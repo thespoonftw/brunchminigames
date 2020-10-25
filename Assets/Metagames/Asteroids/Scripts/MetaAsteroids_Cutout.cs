@@ -48,23 +48,26 @@ public class MetaAsteroids_Cutout : MonoBehaviour {
 
     void Update() {
         if (!zoomPaused) {
-            size = Mathf.Lerp(size, targetSize, 0.025f);
+            size = Mathf.Lerp(size, targetSize, zoomingOut ? 0.0125f : 0.025f);
             transform.localScale = new Vector3(size, size, 1f);
         }
 
         if (!zoomPaused && Mathf.Abs(size - targetSize) <= 0.01f) {
-            if (zoomingOut) {
-                Destroy(gameObject);
-                for (int i = 0; i < edges.Count; i++) {
-                    Destroy(edges[i].gameObject);
-                }
-                } else if (firstZoom) {
+            if (firstZoom) {
                 firstZoom = false;
-                targetSize = 0f;
+                targetSize = zoomingOut ? 11f : 0f;
                 zoomPaused = true;
             } else if (!complete) {
                 complete = true;
-                meta.ZoomComplete();
+                if (zoomingOut) {
+                    Destroy(gameObject);
+                    for (int i = 0; i < edges.Count; i++) {
+                        Destroy(edges[i].gameObject);
+                    }
+                    meta.ZoomOutComplete();
+                } else {
+                    meta.ZoomComplete();
+                }
             }
         }
 
@@ -98,7 +101,7 @@ public class MetaAsteroids_Cutout : MonoBehaviour {
     }
 
     public void ZoomOut() {
-        targetSize = 100f;
+        targetSize = 1f;
         zoomingOut = true;
         firstZoom = true;
         zoomPaused = false;

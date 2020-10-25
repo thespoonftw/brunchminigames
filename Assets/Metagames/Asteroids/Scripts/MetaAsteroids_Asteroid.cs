@@ -42,7 +42,7 @@ public class MetaAsteroids_Asteroid : MonoBehaviour {
         velocity = new Vector3(-transform.position.x, -transform.position.y, 0f) * v;
     }
 
-    void Explode() {
+    public void Explode() {
         explosionManager.Explode(transform.position, 6, 0.4f);
         gameObject.SetActive(false);
     }

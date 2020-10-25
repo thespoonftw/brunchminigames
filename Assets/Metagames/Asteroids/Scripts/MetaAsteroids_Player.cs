@@ -43,6 +43,7 @@ public class MetaAsteroids_Player : MonoBehaviour
         BackSprite.GetComponent<SpriteRenderer>().color = ShipPlayerColors[player.id];
         explosionManager = GameObject.Find("Explosions").GetComponent<MetaAsteroids_ExplosionManager>();
         metaGame = Camera.main.GetComponent<MetaAsteroids_MetaGameManager>();
+        metaGame.RegisterPlayer(this);
     }
 
     // Update is called once per frame
@@ -63,6 +64,7 @@ public class MetaAsteroids_Player : MonoBehaviour
                 if (wormholeEntranceTimer >= WormholeEntranceTime) {
                     gameObject.SetActive(false);
                     metaGame.PlayerEnteredWormhole(targetWormhole);
+                    targetWormhole = null;
                 }
             }
         } else {

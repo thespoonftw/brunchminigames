@@ -17,22 +17,37 @@ public class MetaAsteroids_MetaGameManager : MonoBehaviour {
 
     private MetaAsteroids_AsteroidsManager asteroidsManager;
     private int phaseIndex = 0;
+    private int currentPhaseIndex = 0;
     private float phaseTimer = 0f;
     private float phaseTime = 0f;
     private MetaAsteroids_Phase currentPhase;
     private bool phasePlaying = false;
     private int playersInWormhole = 0;
     private MetaAsteroids_Cutout cutout;
+    private MetaAsteroids_Wormhole currentWormhole;
+    private List<MetaAsteroids_Player> players = new List<MetaAsteroids_Player>();
+    private bool waitingForNextPhase = false;
+    private float nextPhaseTimer = 0f;
 
     void Start() {
         asteroidsManager = GameObject.Find("Asteroid Manager").GetComponent<MetaAsteroids_AsteroidsManager>();
-        StartPhase(0);
+        StartPhase(currentPhaseIndex);
         MetagameManager.OnMinigameEnd += MinigameEnd;
     }
 
+    public void RegisterPlayer(MetaAsteroids_Player player) {
+        players.Add(player);
+    }
+
+    // Mini game just ended
     private void MinigameEnd(bool isVictorious) {
         playersInWormhole = 0;
         cutout.ZoomOut();
+        currentWormhole.KillMe();
+        // Respawn all players.
+        foreach (MetaAsteroids_Player player in players) {
+            player.gameObject.SetActive(true);
+        }
     }
 
     public void PlayerEnteredWormhole(MetaAsteroids_Wormhole wormhole) {
@@ -43,15 +58,24 @@ public class MetaAsteroids_MetaGameManager : MonoBehaviour {
         if (playersInWormhole == players.Count) {
             AllPlayersEnteredWormhole(wormhole);
         }
+        phasePlaying = false;
     }
 
     private void AllPlayersEnteredWormhole(MetaAsteroids_Wormhole wormhole) {
         cutout = GameObject.Instantiate(Cutout).GetComponent<MetaAsteroids_Cutout>();
+        currentWormhole = wormhole;
         cutout.ZoomIn(wormhole.transform.position, 1f, this);
+        asteroidsManager.KillAll();
     }
 
     String GetNextMinigame() {
         return MinigameScenes[UnityEngine.Random.Range(0, MinigameScenes.Count - 1)];
+    }
+
+    public void ZoomOutComplete() {
+        Debug.Log("zoom out complete!");
+        waitingForNextPhase = true;
+        nextPhaseTimer = 1f;
     }
 
     public void ZoomComplete() {
@@ -69,7 +93,20 @@ public class MetaAsteroids_MetaGameManager : MonoBehaviour {
         phasePlaying = true;
     }
 
+    void NextPhase() {
+        currentPhaseIndex++;
+        StartPhase(currentPhaseIndex);
+    }
+
     void Update() {
+        if (waitingForNextPhase) {
+            nextPhaseTimer -= Time.deltaTime;
+            if (nextPhaseTimer <= 0f) {
+                waitingForNextPhase = false;
+                NextPhase();
+            }
+        }
+
         if (phasePlaying) {
             phaseTimer += Time.deltaTime;
             while (phaseTimer >= phaseTime) {

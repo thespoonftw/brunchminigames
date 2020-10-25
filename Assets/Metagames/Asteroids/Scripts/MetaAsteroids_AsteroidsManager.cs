@@ -31,6 +31,17 @@ public class MetaAsteroids_AsteroidsManager : MonoBehaviour {
         }
     }
 
+    public void KillAll() {
+        for (int i = 0; i < pools.Length; i++) {
+            List<GameObject> asteroids = pools[i].GetAllObjects();
+            for (int j = 0; j < asteroids.Count; j++) {
+                if (asteroids[j].activeSelf) {
+                    asteroids[j].GetComponent<MetaAsteroids_Asteroid>().Explode();
+                }
+            }
+        }
+    }
+
     public void SpawnAsteroid(int index=0) {
         GameObject g = pools[index].GetObject();
         g.transform.position = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized * 20f;

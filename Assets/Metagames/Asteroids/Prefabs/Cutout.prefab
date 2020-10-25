@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6341080606680962967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.2, y: -6.6, z: -9}
-  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_LocalScale: {x: 11, y: 11, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,3 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Edge: {fileID: 8119013300568890994, guid: 23d44732fb1e14947a56789f1b6dbb83, type: 3}
+  CompleteTime: 1
