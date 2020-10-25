@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MetagameManager : Singleton<MetagameManager> {
 
-    [ReadOnly] public string metagameScene;
-    [ReadOnly] public string currentMinigameScene;
+    public string metagameScene;
+    public string currentMinigameScene;
     private List<GameObject> disabledMetagameObjects = new List<GameObject>();
 
     public static event Action<bool> OnMinigameEnd; // subscribe to this from your metagame to know when a minigame ends. True = victory, False = defeat

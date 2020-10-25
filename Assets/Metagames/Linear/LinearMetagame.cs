@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,7 @@ public class LinearMetagame : MonoBehaviour {
     private float nextGameDelay = 3f;
     private float nextGameCounter = 0f;
 
-    [ReadOnly] public int minigameIndex = 0;
+    public int minigameIndex = 0;
 
     public List<string> minigameScenes;
 
