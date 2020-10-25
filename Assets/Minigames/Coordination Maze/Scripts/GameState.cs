@@ -21,15 +21,21 @@ public class GameState : MonoBehaviour
     public readonly int mazeWidth = 10;
     public readonly int mazeHeight = 10;
 
+    public int ballSeed;
+
     private Transform newMaze;
     private BallControl ballControl;
     private GenerateMaze mazeScript;
+
+    private System.Random rng = new System.Random();
 
     // Awake is called for all scripts before Start is called on any script
     private void Awake() {
 
         mazes = new Transform[mazeCount];
         balls = new Transform[mazeCount];
+
+        ballSeed = rng.Next();
 
         spawnPositions[0] = new Vector3(-((float)mazeWidth / 2 + 1.0f), 0, (float)mazeHeight / 2 + 1.0f);
         spawnPositions[1] = new Vector3((float)mazeWidth / 2 + 1.0f, 0, (float)mazeHeight / 2 + 1.0f);

@@ -13,47 +13,62 @@ public class BallControl : MonoBehaviour {
     public int xCoordinate;
     public int zCoordinate;
     public readonly float ballOffset = 0.5f;
+    public int playerCount = 0;
+    public int seed = 0;
 
+    private GameState gameState;
     private GenerateMaze maze;
     private Transform[,,] walls;
     private int mazeWidth;
     private int mazeHeight;
+    private int inputCount = 4;
 
     List<Player> players = new List<Player>();
+    List<Player> playersRng = new List<Player>();
 
     private void Start() {
+        gameState = transform.parent.parent.GetComponent<GameState>();
         maze = transform.parent.GetComponent<GenerateMaze>();
         mazeWidth = maze.mazeWidth;
         mazeHeight = maze.mazeHeight;
         walls = maze.walls;
-        players = PlayerManager.GetPlayers();
+        players = PlayerManager.GetPlayers(copy:true);
+
+        if (players.Count == 2) {
+            players.Add(players[0]);
+            players.Add(players[1]);
+        }
+
+        var rng = new System.Random(gameState.ballSeed);
+
+        for (int i = 0; i < inputCount; i++) {
+            var randomPlayer = rng.Next(players.Count);
+            playersRng.Add(players[randomPlayer]);
+            players.RemoveAt(randomPlayer);
+        }
 
     }
 
     private void Update() {
-        var gamepad = Gamepad.current;
         Vector3 movement;
         Vector3 newPosition;
 
-        if (gamepad == null)
-            return;
-
-        if (gamepad.leftStick.left.wasPressedThisFrame) {
+        if (playersRng[0].WasLeftPressedThisFrame() == true) {
             movement = Vector3.left;
             newPosition = transform.localPosition + movement;
         }
 
-        else if (gamepad.leftStick.right.wasPressedThisFrame) {
+        else if (playersRng[1].WasRightPressedThisFrame() == true) {
             movement = Vector3.right;
             newPosition = transform.localPosition + movement;
         }
 
-        else if (gamepad.leftStick.up.wasPressedThisFrame) {
+        else if (playersRng[2].WasUpPressedThisFrame() == true) {
             movement = Vector3.forward;
             newPosition = transform.localPosition + movement;
         }
 
-        else if (gamepad.leftStick.down.wasPressedThisFrame) {
+        else if (playersRng[3].WasDownPressedThisFrame() == true) {
             movement = Vector3.back;
             newPosition = transform.localPosition + movement;
         }

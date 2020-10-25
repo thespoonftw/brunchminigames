@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour {
         return players[index];
     }
 
-    public static List<Player> GetPlayers() {
+    public static List<Player> GetPlayers(bool copy = true) {
         // If it's test mode then just cheat and initialise players with the current list of gamepads.
         if (IsTestMode) {
             players = new List<Player>();
@@ -40,7 +40,21 @@ public class PlayerManager : MonoBehaviour {
             }
         }
 
-        return players;
+        if (copy == true) {
+
+            return new List<Player>(players);
+
+        }
+        else {
+
+            return players;
+
+        }
+
+    }
+
+    public static void DebugNumPlayers() {
+        Debug.Log(players.Count);
     }
 
     void Update()  {

@@ -115,8 +115,8 @@ public class GenerateMaze : MonoBehaviour
             }
         }
 
-        Debug.Log((DateTime.Now.Ticks - DateTime.Today.Ticks) % cstOneMillion);
-        var rng = new System.Random();
+        int seed = (int)((DateTime.Now.Ticks - DateTime.Today.Ticks) % cstOneMillion);
+        var rng = new System.Random(seed);
         Vector3 movement = new Vector3 (0.0f, 0.0f, 0.0f);
 
         usedCells.Add(unusedCells[0]);
