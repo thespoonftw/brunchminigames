@@ -93,9 +93,19 @@ public class MetaAsteroids_MetaGameManager : MonoBehaviour {
         phasePlaying = true;
     }
 
+    // TODO: Make this better (end animations, etc.)
+    // TODO: Win/Lose a meta game?
+    void GameComplete() {
+        MetagameManager.Instance.EndMetagame();
+    }
+
     void NextPhase() {
         currentPhaseIndex++;
-        StartPhase(currentPhaseIndex);
+        if (currentPhaseIndex >= Phases.Length) {
+            GameComplete();
+        } else {
+            StartPhase(currentPhaseIndex);
+        }
     }
 
     void Update() {

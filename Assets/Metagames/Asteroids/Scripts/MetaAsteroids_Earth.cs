@@ -18,6 +18,8 @@ public class MetaAsteroids_Earth : MonoBehaviour {
     void Explode() {
         explosionManager.Explode(transform.position, 6, 0.4f);
         gameObject.SetActive(false);
+        // TODO: GAME OVER!!!
+        //MetagameManager.Instance.EndMetagame();
     }
 
     public void OnHitByAsteroid() {
