@@ -20,13 +20,13 @@ public class AvatarController : MonoBehaviour {
        //GetComponent<SpriteRenderer>().color = ShipOutlineColors[player.id]; // colors should be implemented at some point
     }
 
-    void Update() {
+    void FixedUpdate() {
         Vector3 input = player.GetInputAxis();
         if (offsetBy45) { input = Quaternion.Euler(0, 0, -45) * input; }
         float mag = input.magnitude;
         if (mag < DeadZoneRadius) { return; }
         var speed = player.IsActionButtonPressed() && canSprint ? SprintSpeed : MoveSpeed;
-        transform.position = transform.position + new Vector3(input.x * Time.deltaTime * speed, 0, input.y * Time.deltaTime * speed);
+        GetComponent<Rigidbody>().velocity = new Vector3(input.x * speed, 0, input.y * speed);
         transform.rotation = Quaternion.Euler(0, Mathf.Atan2(input.x, input.y) * RADIANS_TO_DEG, 0);
     }
 

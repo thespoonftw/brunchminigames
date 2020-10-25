@@ -7,8 +7,10 @@ namespace HiddenMaze {
 
         public int numberOfTraps;
 
+        public GameObject endPrefab;
         public GameObject trapPrefab;
         public GameObject cornerPrefab;
+        public GameObject victoryGO;
 
         private List<int> path;
         private List<bool> isRightTurn;
@@ -28,7 +30,10 @@ namespace HiddenMaze {
                 var newLoc = new Vector3(x, 0, z);
                 var rotation = Quaternion.LookRotation(newLoc - previousLoc, Vector3.up);
                 previousLoc = newLoc;
-                if (isCornerPiece) {
+                if (i == path.Count - 1) {
+                    Instantiate(endPrefab, newLoc, rotation);
+                    victoryGO.transform.position = newLoc;
+                } else if (isCornerPiece) {
                     if (isRightTurn[i]) { rotation *= Quaternion.Euler(Vector3.up * -90); }
                     Instantiate(cornerPrefab, newLoc, rotation);
                 } else {

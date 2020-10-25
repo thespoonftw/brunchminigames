@@ -12,9 +12,12 @@ namespace HiddenMaze {
         }
 
         private void OnTriggerEnter(Collider other) {
-            if (other.GetComponentInParent<AvatarController>()) {
+            var controller = other.GetComponentInParent<AvatarController>();
+            if (controller != null) {
                 other.transform.parent.transform.position = reviveSpot;
                 other.transform.parent.transform.rotation = Quaternion.identity;
+                controller.enabled = true;
+                other.GetComponentInParent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             }
         }
     }

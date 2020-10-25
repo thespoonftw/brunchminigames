@@ -14,7 +14,6 @@ public class PlayerControlSetup : MonoBehaviour {
         List<Player> players = PlayerManager.GetPlayers();
         int index = 0;
         foreach (Player p in players) {
-            Debug.Log("player");
             GameObject g = GameObject.Instantiate(PlayerPrefab);
             g.SetActive(true);
 

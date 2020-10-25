@@ -8,13 +8,15 @@ namespace HiddenMaze {
 
         public Transform[] tiles;
         public GameObject tilePrefab;
+        public GameObject triggerPrefab;
 
         void Start() {
             var permutationIndex = Random.Range(0, 18);
             for (int i = 0; i<9; i++) {
                 var tile = Instantiate(tilePrefab, tiles[i].position, Quaternion.identity, transform);
+                var trigger = Instantiate(triggerPrefab, tiles[i].position, Quaternion.identity, transform);
                 if (permutations[permutationIndex][i] == 0) {
-                    tile.GetComponent<FakeTile>().SetAsFake();
+                    trigger.GetComponent<FakeTile>().SetAsFake(tile);
                 }
             }
         }
