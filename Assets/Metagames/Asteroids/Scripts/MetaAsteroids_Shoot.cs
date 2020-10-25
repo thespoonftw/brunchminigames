@@ -36,14 +36,14 @@ public class MetaAsteroids_Shoot : MonoBehaviour {
             if (blockShotTimer < 0f) blockShotTimer = 0f;
         }
 
-        if (!isHeld && player.IsActionButtonPressed()) {
+        if (!isHeld && player.WasActionButtonPressedThisFrame()) {
             isHeld = true;
             heldTimer = 0f;
         }
 
         if (isHeld) {
             heldTimer += Time.deltaTime;
-            if (player.IsActionButtonDown()) {
+            if (player.IsActionButtonPressed()) {
                 if (heldTimer > SinglePressTime) {
                     if (!heldShooting) {
                         MultiShootStart();
