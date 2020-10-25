@@ -14,6 +14,7 @@ public class PlayerControlSetup : MonoBehaviour {
         List<Player> players = PlayerManager.GetPlayers();
         int index = 0;
         foreach (Player p in players) {
+            Debug.Log("player");
             GameObject g = GameObject.Instantiate(PlayerPrefab);
             g.SetActive(true);
 
@@ -37,9 +38,6 @@ public class PlayerControlSetup : MonoBehaviour {
                 var cameraController = CameraManager.Instance.SetPlayerCamera(cameraGameobject.GetComponent<Camera>(), index);
                 cameraController.SetFocus(g);
             }
-            
-
-            
 
             g.name = "Player " + p.id;
 

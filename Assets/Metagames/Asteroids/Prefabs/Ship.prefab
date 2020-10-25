@@ -119,6 +119,7 @@ MonoBehaviour:
   MaxMoveSpeed: 10
   MoveMod: 1
   TurnMod: 1
+  WormholeEntranceTime: 0.25
 --- !u!114 &376941051772024448
 MonoBehaviour:
   m_ObjectHideFlags: 0

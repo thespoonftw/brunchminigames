@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour {
     public static List<Player> GetPlayers() {
         // If it's test mode then just cheat and initialise players with the current list of gamepads.
         if (IsTestMode) {
+            players = new List<Player>();
             foreach (Gamepad g in Gamepad.all) {
                 Player p = PlayerManager.RegisterPlayer(g);
             }
