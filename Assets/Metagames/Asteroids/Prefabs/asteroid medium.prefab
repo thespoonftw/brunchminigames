@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f38a38510609443a4c107fae1137ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 3
+  Health: 2
   FreezeTimeOnHit: 0.025
 --- !u!1 &5202379330363106346
 GameObject:

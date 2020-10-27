@@ -111,7 +111,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   BackSprite: {fileID: 376941052306501956}
   DeadZoneRadius: 0.1
-  TurnZoneRadius: 0.25
+  TurnZoneRadius: 0.5
   MoveZoneRadius: 0.8
   MinTurnSpeed: 0
   MaxTurnSpeed: 10

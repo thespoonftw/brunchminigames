@@ -110,6 +110,8 @@ public class MetaAsteroids_Player : MonoBehaviour
 
     void OnHitByBullet() {
         Debug.Log("OnHitByBullet!");
+        gameObject.SetActive(false);
+        explosionManager.Explode(transform.position, 6, 0.2f);
     }
 
     void OnHitAsteroid() {
