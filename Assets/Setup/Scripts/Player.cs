@@ -23,10 +23,6 @@ public class Player
         Debug.Log("made a new player that's " + (this.isKeyboard ? "using a keyboard" : "not using a keyboard"));
     }
 
-    public void OnActionButtonDown() {
-        
-    }
-
     public bool WasActionButtonPressedThisFrame() {
         return gamepad.aButton.wasPressedThisFrame;
     }
