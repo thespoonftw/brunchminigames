@@ -346,9 +346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d2c0a77499ab742be36a74127c7828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AsteroidFrequency: 1.6
+  AsteroidFrequency: 1
   AsteroidSpeed: 0.1
-  Paused: 1
+  Paused: 0
 --- !u!1 &363782187
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,8 +721,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Phases:
-  - bpm: 60
-    contents: l-l-l-mmmmmm---w
+  - bpm: 80
+    contents: lllll---lllll---lllllll--llllllllllllllll-------w
   - bpm: 80
     contents: llll---llll---lmlmlm---w
   Wormhole: {fileID: 4408903134552384198, guid: 5df76ef64346c724897a2df4741647f6,
