@@ -10,8 +10,14 @@ public class MiniBugs_Ant : MonoBehaviour {
     public float MinControlThreshold;
     public float MaxControlThreshold;
     public float MinControlMagnitude;
+    public float DistanceBetweenPointPositions = 2f;
+    public float NextPointDistance = 3f;
+    public float PointSearchDistance = 10f;
 
     private float controlThreshold = 0f;
+    private Vector3 lastPointPosition;
+    private MiniBugs_AntPoint currentAntPoint;
+    private MiniBugs_AntPointManager antPointManager;
 
     public void AssignPlayer(Player p) {
         player = p;
@@ -19,6 +25,8 @@ public class MiniBugs_Ant : MonoBehaviour {
 
     void Start() {
         pointFollower = GetComponent<PointFollower>();
+        antPointManager = GameObject.Find("Ant Points").GetComponent<MiniBugs_AntPointManager>();
+        lastPointPosition = transform.position;
     }
 
     void Update() {
@@ -40,8 +48,25 @@ public class MiniBugs_Ant : MonoBehaviour {
 
         if (player != null && controlThreshold >= MinControlThreshold) {
             MovePlayer();
+            if (Vector3.Distance(lastPointPosition, transform.position) >= DistanceBetweenPointPositions) {
+                // Create.
+                currentAntPoint = antPointManager.AddPoint(transform.position, currentAntPoint);
+                lastPointPosition = transform.position;
+            }
         } else {
             // Wander around using AI.
+            if (currentAntPoint == null) {
+                currentAntPoint = antPointManager.GetNearestAntPoint(transform.position, PointSearchDistance);
+            }
+
+            if (currentAntPoint != null) {
+                pointFollower.TowardsPoint(currentAntPoint.Position);
+                Vector3 toTarget = currentAntPoint.Position - transform.position;
+                toTarget.z = 0f;
+                if (toTarget.magnitude <= NextPointDistance) {
+                    currentAntPoint = currentAntPoint.GetNextPoint();
+                }
+            }
         }
     }
 

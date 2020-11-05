@@ -6,7 +6,18 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour {
-    public static Color[] PlayerColors;
+    public static Color[] PlayerColors = new Color[]{
+        new Color(126f/255f, 243f/255f, 126f/255f, 1f),
+        new Color(234f/255f, 63f/255f, 52f/255f, 1f),
+        new Color(255f/255f, 247f/255f, 49f/255f, 1f),
+        new Color(113f/255f, 43f/255f, 129f/255f, 1f)
+    };
+    public static Color[] PlayerSecondaryColors = new Color[]{
+        new Color(255f/255f, 255f/255f, 255f/255f, 1f),
+        new Color(255f/255f, 255f/255f, 255f/255f, 1f),
+        new Color(239f/255f, 97f/255f, 0f/255f, 1f),
+        new Color(255f/255f, 255f/255f, 255f/255f, 1f)
+    };
 
     //public static event Action OnAPress;
     //public static event Action<float> OnXAxis;

@@ -69,6 +69,9 @@ MonoBehaviour:
   MinControlThreshold: 1
   MaxControlThreshold: 2
   MinControlMagnitude: 0.1
+  DistanceBetweenPointPositions: 2
+  NextPointDistance: 3
+  PointSearchDistance: 10
 --- !u!114 &4791816898498297052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +88,7 @@ MonoBehaviour:
   TurnZoneRadius: 0.25
   MoveZoneRadius: 0.8
   MinTurnSpeed: 0
-  MaxTurnSpeed: 1
+  MaxTurnSpeed: 2.5
   MinMoveSpeed: 0
   MaxMoveSpeed: 3
   MoveMod: 1
