@@ -13,6 +13,7 @@ public class MiniHoovers_Spawner : MonoBehaviour {
     public float MinSize;
     public float MaxSize;
     public float SizeExponent;
+    public float Margin;
 
     private float w;
     private float h;
@@ -21,14 +22,10 @@ public class MiniHoovers_Spawner : MonoBehaviour {
 
     void Start() {
         w = Camera.main.orthographicSize * Screen.width / Screen.height;
-        w *= 1f - (64f / 1600f);
+        w -= Margin;
         h = Camera.main.orthographicSize;
-        h *= 1f - (64f / 900f);
-        GenerateGrass();
-    }
+        h -= Margin;
 
-    void OnValidate() {
-        ClearGrass();
         GenerateGrass();
     }
 

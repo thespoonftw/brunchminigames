@@ -359,8 +359,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48beb5590bfc82b49993f6ed919b1427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateSpeed: 300
-  MoveSpeed: 20
+  RotateSpeed: 400
+  MoveSpeed: 5
+  InitialBoostSpeed: 100
+  Friction: 0.25
+  FrictionExponent: 2
   Visible: {fileID: 1610329189023242030}
   Pointer: {fileID: 1610329189467632766}
   BounceVelocity: 20

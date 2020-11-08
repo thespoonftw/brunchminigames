@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 1913942209}
   - component: {fileID: 1913942208}
   - component: {fileID: 1913942207}
-  - component: {fileID: 1913942211}
+  - component: {fileID: 1913942212}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -711,6 +711,7 @@ MonoBehaviour:
   MinSize: 1
   MaxSize: 2
   SizeExponent: 1
+  Margin: 7.6
 --- !u!81 &1913942208
 AudioListener:
   m_ObjectHideFlags: 0
@@ -776,54 +777,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1913942211
+--- !u!114 &1913942212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913942206}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a19802cf18ea048929d37c9be18197, type: 3}
+  m_Script: {fileID: 11500000, guid: 55794f883ec962d45b03226913fdc89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridSize: 10
-  OffsetVariance: 2
-  NoiseExponent: 1
-  NoiseDispersion: 6
-  NoiseThreshold: 0.4
-  GrassObject: {fileID: 169278450169493243, guid: 44774072c25c1834fa93e2186fc508f4,
-    type: 3}
-  GrassColorGradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  MinSize: 3
-  MaxSize: 5
-  SizeExponent: 1

@@ -22,8 +22,11 @@ public class MiniHoovers_Slime : MonoBehaviour {
     public float Wave2SizeChangeMax;
 
     private Vector3 startScale;
+    private MiniHoovers_SlimeCounter slimeCounter;
 
     void Start() {
+        slimeCounter = Camera.main.GetComponent<MiniHoovers_SlimeCounter>();
+        slimeCounter.PlusSlime();
         wave1Speed = Random.Range(Wave1SpeedMin, Wave1SpeedMax);
         wave2Speed = Random.Range(Wave2SpeedMin, Wave2SpeedMax);
         wave1T = Random.Range(0, 10f);
@@ -39,7 +42,9 @@ public class MiniHoovers_Slime : MonoBehaviour {
 
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * 0.25f, 0.1f);
 
-            if (Vector3.Distance(transform.position, targetPlayer.transform.position) < 0.1f) {
+            Vector3 toTarget = transform.position - targetPlayer.transform.position;
+            toTarget.z = 0f;
+            if (toTarget.magnitude < 0.1f) {
                 Destroy(gameObject);
             }
         } else {
@@ -64,6 +69,7 @@ public class MiniHoovers_Slime : MonoBehaviour {
 
     public void GetSucked(MiniHoovers_Player player) {
         targetPlayer = player;
+        slimeCounter.MinusSlime();
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<CircleCollider2D>());
     }
