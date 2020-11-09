@@ -25,6 +25,7 @@ public class MiniHoovers_Player : MonoBehaviour {
         Pointer.transform.GetChild(0).GetComponent<SpriteRenderer>().color = PlayerManager.PlayerSecondaryColors[player.id];
 
         r = GetComponent<Rigidbody2D>();
+        r.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         startScale = Visible.transform.localScale;
     }
 
@@ -42,6 +43,7 @@ public class MiniHoovers_Player : MonoBehaviour {
 
         if (player.WasActionButtonPressedThisFrame()) {
             // Set initial boost speed.
+            r.constraints = RigidbodyConstraints2D.FreezeRotation;
             r.velocity = r.velocity + (Vector2) transform.up * InitialBoostSpeed;
         } else if (player.IsActionButtonPressed()) {
             // Friction to move speed (or lerp)
@@ -72,13 +74,14 @@ public class MiniHoovers_Player : MonoBehaviour {
         if (slime == null) {
             Visible.transform.localScale *= 1.25f;
             Vector3 normal = (Vector3)col.GetContact(0).normal;
-            if (player.IsActionButtonPressed()) {
+            if (player.IsActionButtonPressed() && MoveSpeed > 0f) {
                 transform.up = transform.up - normal * 2f * Vector3.Dot(transform.up, normal);
                 r.velocity = transform.up * BounceVelocity;
             } else {
                 MiniHoovers_Player player = col.gameObject.GetComponent<MiniHoovers_Player>();
                 if (player != null) {
                     // Bounce away.
+                    r.constraints = RigidbodyConstraints2D.FreezeRotation;
                     Vector3 fromPlayer = (transform.position - player.transform.position).normalized;
                     r.velocity = fromPlayer * BounceVelocity;
                 } else {

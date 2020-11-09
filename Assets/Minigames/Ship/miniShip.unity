@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e1488f530659b42a5ade1ade7d6f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotateSpeed: 0.01
 --- !u!1 &284204901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,8 +1028,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5bb6fa4b414a144aec434608e38bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 1
-  Resolution: 0
+  ScrollSpeed: 10
+  Resolution: 100
+  Z: -3
+  Margin: 5
+  OffsetY: -16
+  Acceleration: 1
+  MinSpeedMod: 0.5
+  MaxSpeedMod: 2
+  Wave1Freq: 0.1
+  Wave1Amp: 5
+  Wave2Freq: 0.1
+  Wave2Amp: 3
 --- !u!81 &1913942208
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1108,4 +1119,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PooledObject: {fileID: 1941967487454012701, guid: d8c17e230e1888f4aa01fd3e7c317f63,
     type: 3}
-  InitialPoolSize: 0
+  InitialPoolSize: 100

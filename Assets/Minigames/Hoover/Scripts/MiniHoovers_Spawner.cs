@@ -19,12 +19,15 @@ public class MiniHoovers_Spawner : MonoBehaviour {
     private float h;
     private List<GameObject> grasses = new List<GameObject>();
     private float seed;
+    private MiniHoovers_SlimeCounter slimeCounter;
 
     void Start() {
         w = Camera.main.orthographicSize * Screen.width / Screen.height;
         w -= Margin;
         h = Camera.main.orthographicSize;
         h -= Margin;
+
+        slimeCounter = Camera.main.GetComponent<MiniHoovers_SlimeCounter>();
 
         GenerateGrass();
     }
@@ -70,6 +73,7 @@ public class MiniHoovers_Spawner : MonoBehaviour {
                     g.transform.localScale = new Vector3(s, s, 1f);
                     g.transform.position = grassPosition + offset;
                     grasses.Add(g);
+                    slimeCounter.PlusSlime();
                 }
             }
         }

@@ -23,28 +23,31 @@ public class MiniHoovers_Slime : MonoBehaviour {
 
     private Vector3 startScale;
     private MiniHoovers_SlimeCounter slimeCounter;
+    private Vector3 offset;
+    private bool claimed;
 
-    void Start() {
+    void Awake() {
         slimeCounter = Camera.main.GetComponent<MiniHoovers_SlimeCounter>();
-        slimeCounter.PlusSlime();
         wave1Speed = Random.Range(Wave1SpeedMin, Wave1SpeedMax);
         wave2Speed = Random.Range(Wave2SpeedMin, Wave2SpeedMax);
         wave1T = Random.Range(0, 10f);
         wave2T = Random.Range(0, 10f);
+    }
+
+    void Start() {
         startScale = transform.localScale;
     }
 
     void Update() {
         if (targetPlayer != null) {
-            Vector3 pos = Vector3.Lerp(transform.position, targetPlayer.transform.position, 0.1f);
+            offset = Vector3.Lerp(offset, Vector3.zero, 0.1f);
+            Vector3 pos = targetPlayer.transform.position + offset;
             pos.z = transform.position.z;
             transform.position = pos;
 
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * 0.25f, 0.1f);
 
-            Vector3 toTarget = transform.position - targetPlayer.transform.position;
-            toTarget.z = 0f;
-            if (toTarget.magnitude < 0.1f) {
+            if (offset.magnitude < 0.1f) {
                 Destroy(gameObject);
             }
         } else {
@@ -68,6 +71,11 @@ public class MiniHoovers_Slime : MonoBehaviour {
     }
 
     public void GetSucked(MiniHoovers_Player player) {
+        if (claimed) return;
+        claimed = true;
+
+        offset = transform.position - player.transform.position;
+        offset.z = 0f;
         targetPlayer = player;
         slimeCounter.MinusSlime();
         Destroy(GetComponent<Rigidbody2D>());

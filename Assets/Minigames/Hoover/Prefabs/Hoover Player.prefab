@@ -360,13 +360,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotateSpeed: 400
-  MoveSpeed: 5
-  InitialBoostSpeed: 100
-  Friction: 0.25
-  FrictionExponent: 2
+  MoveSpeed: 0
+  InitialBoostSpeed: 25
+  Friction: 1
+  FrictionExponent: 1
   Visible: {fileID: 1610329189023242030}
   Pointer: {fileID: 1610329189467632766}
-  BounceVelocity: 20
+  BounceVelocity: 10
 --- !u!1 &1610329190602001300
 GameObject:
   m_ObjectHideFlags: 0
