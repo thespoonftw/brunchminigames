@@ -13,6 +13,8 @@ namespace Jigsaw {
         public float maxHeight;
         public float maxWidth;
         private float RAD_TO_DEG = 180 / Mathf.PI;
+        public float turnRate;
+        public float targetRotation;
 
         void Start() {
             rotationMode = GameObject.Find("Setup").GetComponent<JigsawSetup>().rotationMode;
@@ -21,6 +23,13 @@ namespace Jigsaw {
         }
 
         void Update() {
+            if (turnRate == 0) {
+                transform.rotation = Quaternion.Euler(0, 0, targetRotation);
+            } else {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, targetRotation), turnRate * Time.deltaTime);
+            }
+
+
             Vector3 input = player.GetInputAxis();
             float mag = input.magnitude;
             if (mag < DeadZoneRadius) { return; }
@@ -38,13 +47,13 @@ namespace Jigsaw {
             if (!rotationMode || mag < DeadTurnRadius) { return; }
             var angle = (Mathf.Atan2(input.y, input.x) * RAD_TO_DEG + 180) % 360;
             if (angle < 45 || angle >= 315) {
-                transform.rotation = Quaternion.Euler(0, 0, 90);
+                targetRotation = 90;
             } if (angle >= 45 && angle < 135) {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                targetRotation = 180;
             } if (angle >= 135 && angle < 225) {
-                transform.rotation = Quaternion.Euler(0, 0, 270);
+                targetRotation = 270;
             } if (angle >= 225 && angle < 315) {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                targetRotation = 0;
             }
 
            

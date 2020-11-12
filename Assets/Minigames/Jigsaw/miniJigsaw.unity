@@ -268,9 +268,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c494f3e6d518944bdf31aa0338e8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationMode: 0
-  gridsize: 5
-  image: {fileID: 2800000, guid: e1ece51d7716670459bb125793504a81, type: 3}
+  rotationMode: 1
+  gridsize: 3
+  images:
+  - {fileID: 2800000, guid: d43b496bfca718448af578035c4af5d4, type: 3}
+  - {fileID: 2800000, guid: ddae40b53926c1e4dbac63f96fbda1ef, type: 3}
+  - {fileID: 2800000, guid: 9217b9c27186ef441a73b344c7a951ca, type: 3}
+  - {fileID: 2800000, guid: 7c57a85c9d6b0ba49bf29022b44b4db4, type: 3}
+  - {fileID: 2800000, guid: 538b4b30ba8d5bd47b3ce882e2040b11, type: 3}
+  - {fileID: 2800000, guid: 4776760b406568c419416a96e82fcdf8, type: 3}
+  - {fileID: 2800000, guid: 3534f85a22159e24a8bcba6cd3e367bd, type: 3}
+  - {fileID: 2800000, guid: 7eb47db50ab2766429c1ae6f4a71c8d0, type: 3}
   jigsawSlotPrefab: {fileID: 7551196948787201289, guid: 9825e4fe1bc1b8f49b8a6d3ab06e42ee,
     type: 3}
   jigsawPieceParentGO: {fileID: 965220405}

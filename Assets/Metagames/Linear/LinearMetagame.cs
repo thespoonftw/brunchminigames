@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 public class LinearMetagame : MonoBehaviour {
 
     private float nextGameDelay = 3f;
-    private float nextGameCounter = 0f;
-
     public int minigameIndex = 0;
 
     public List<string> minigameScenes;
@@ -25,7 +23,7 @@ public class LinearMetagame : MonoBehaviour {
     }
 
     IEnumerator NextMinigameAfterDelay() {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(nextGameDelay);
         NextGame();
     }
 

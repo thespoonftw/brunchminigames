@@ -9,7 +9,7 @@ namespace Jigsaw {
         [Header("Difficulty settings")]
         public bool rotationMode;
         public int gridsize;
-        public Texture2D image;
+        public List<Texture2D> images;
 
         [Header("prefabs - dont touch")]
         public GameObject jigsawSlotPrefab;        
@@ -30,6 +30,7 @@ namespace Jigsaw {
                 }
             }
 
+            var image = images[Random.Range(0, images.Count)];
             jigsawPieceParentGO.GetComponent<JigsawPieceParent>().SpawnPieces(gridsize, rotationMode, image);            
         }
 
@@ -37,7 +38,7 @@ namespace Jigsaw {
             int i = 0;
             foreach (Transform p in transform) {
                 if (Vector2.Distance(piece.transform.position, p.position) < 1.5f / gridsize) {
-                    piece.transform.position = p.position;
+                    piece.transform.position = new Vector3(p.position.x, p.position.y, piece.transform.position.z);
                     if (piece.GetComponent<JigsawPiece>().pieceNumber == i && Mathf.Abs((piece.transform.rotation.eulerAngles.z + 180) % 360 - 180) < 5f) { 
                         correctPieces[i] = true;
                         CheckForVictory();

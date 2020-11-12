@@ -5,10 +5,10 @@ using UnityEngine;
 public class miniTest1 : MonoBehaviour {
 
     private float counter = 0;
-    public GameObject camera;
+    public GameObject gameCamera;
 
     void Start() {
-        CameraManager.Instance.SetMainCamera(camera.GetComponent<Camera>());
+        CameraManager.Instance.SetMainCamera(gameCamera.GetComponent<Camera>());
     }
 
     void Update() {

@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ab2793daa129f46bc27b7ef432c0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movePieceToCentre: 1
   jigsawPieceParent: {fileID: 0}
 --- !u!114 &1953035912851175595
 MonoBehaviour:
@@ -123,7 +124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationMode: 0
   DeadZoneRadius: 0.1
-  DeadTurnRadius: 0.3
+  DeadTurnRadius: 0.5
   moveSpeed: 3
   maxHeight: 3
   maxWidth: 5.6
+  turnRate: 720
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}

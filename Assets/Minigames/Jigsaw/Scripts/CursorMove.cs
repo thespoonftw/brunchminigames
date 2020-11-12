@@ -10,6 +10,7 @@ namespace Jigsaw {
         public float moveSpeed;
         public float maxHeight;
         public float maxWidth;
+        public bool isXZplane;
 
         void Start() {
             player = GetComponent<PlayerControlComponent>().GetPlayer();
@@ -27,10 +28,15 @@ namespace Jigsaw {
             if (transform.position.x + dx < maxWidth && transform.position.x + dx > -maxWidth) {
                 transform.position += new Vector3(dx, 0, 0);
             }
-            if (transform.position.y + dy < maxHeight && transform.position.y + dy > -maxHeight) {
-                transform.position += new Vector3(0, dy, 0);
+            if (!isXZplane) {
+                if (transform.position.y + dy < maxHeight && transform.position.y + dy > -maxHeight) {
+                    transform.position += new Vector3(0, dy, 0);
+                }
+            } else {
+                if (transform.position.z + dy < maxHeight && transform.position.z + dy > -maxHeight) {
+                    transform.position += new Vector3(0, 0, dy);
+                }
             }
-
         }
     }
 
