@@ -7,6 +7,7 @@ public class PlayerControlSetup : MonoBehaviour {
     public GameObject PlayerPrefab;
     public Camera CameraPrefab;
     public Transform[] SpawnPositions;
+    public List<GameObject> Players;
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +15,8 @@ public class PlayerControlSetup : MonoBehaviour {
         List<Player> players = PlayerManager.GetPlayers();
         int index = 0;
         foreach (Player p in players) {
-            GameObject g = GameObject.Instantiate(PlayerPrefab);
+            GameObject g = Instantiate(PlayerPrefab);
+            Players.Add(g);
             g.SetActive(true);
 
             Transform spawn = null;
