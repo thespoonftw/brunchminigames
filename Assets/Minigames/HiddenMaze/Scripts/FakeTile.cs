@@ -5,6 +5,8 @@ using UnityEngine;
 namespace HiddenMaze {
     public class FakeTile : MonoBehaviour {
 
+        public float respawnDelay;
+
         private bool isFake;
         private Rigidbody rb;
         private Vector3 originalPosition;
@@ -19,7 +21,7 @@ namespace HiddenMaze {
             other.GetComponentInParent<Rigidbody>().constraints = RigidbodyConstraints.None;
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
-            respawnTime = 3;
+            respawnTime = respawnDelay;
         }
 
         public void SetAsFake(GameObject tile) {

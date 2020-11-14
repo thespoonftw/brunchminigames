@@ -13,10 +13,13 @@ public class AvatarController : MonoBehaviour {
     public float MoveSpeed;
     public float SprintSpeed;
 
+    private Rigidbody rb;
+
     private float RADIANS_TO_DEG = 180f / Mathf.PI;
 
     void Start() {
         player = GetComponent<PlayerControlComponent>().GetPlayer();
+        rb = GetComponent<Rigidbody>();
        //GetComponent<SpriteRenderer>().color = ShipOutlineColors[player.id]; // colors should be implemented at some point
     }
 
@@ -26,7 +29,7 @@ public class AvatarController : MonoBehaviour {
         float mag = input.magnitude;
         if (mag < DeadZoneRadius) { return; }
         var speed = player.IsActionButtonPressed() && canSprint ? SprintSpeed : MoveSpeed;
-        GetComponent<Rigidbody>().velocity = new Vector3(input.x * speed, 0, input.y * speed);
+        rb.velocity = new Vector3(input.x * speed, rb.velocity.y, input.y * speed);
         transform.rotation = Quaternion.Euler(0, Mathf.Atan2(input.x, input.y) * RADIANS_TO_DEG, 0);
     }
 

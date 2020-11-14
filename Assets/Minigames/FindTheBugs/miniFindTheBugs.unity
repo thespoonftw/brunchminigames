@@ -2760,15 +2760,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfAnts: 5
-  searchTime: 60
   antSpawnLocation: {fileID: 1603862565}
   antSpawnLocation2: {fileID: 714670138}
   hidingPlacesParent: {fileID: 1232855011}
   antPrefab: {fileID: 684013588046481174, guid: 6c6b71e3c1eb62947a7712c86b82a208,
     type: 3}
-  defeatTimer: {fileID: 5996618135412621756}
-  timeRemainingText: {fileID: 5996618134539084014}
-  bugsRemainingText: {fileID: 2050402111}
   bannerText: {fileID: 5664289659055665189}
   antsYetToHide: 0
   antsYetToBeFound: 0
@@ -2810,6 +2806,7 @@ MonoBehaviour:
   - {fileID: 1128354695}
   - {fileID: 1540998187}
   - {fileID: 183653049}
+  Players: []
 --- !u!1001 &607175851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6142,7 +6139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1212724229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11178,7 +11175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5996618135412621752
 MonoBehaviour:
   m_ObjectHideFlags: 0

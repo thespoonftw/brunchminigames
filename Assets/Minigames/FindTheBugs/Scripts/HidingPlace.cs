@@ -25,18 +25,21 @@ namespace FindTheBugs {
             hiddenAnt.SetActive(false);
         }
 
-        public void Reveal() {
+        public bool TryRevealAnt() {
+            var result = false;
             if (hiddenAnt == null) {
                 cross.SetActive(true);                
             } else {
+                result = true;
                 hiddenAnt.SetActive(true);
                 setup.antsYetToBeFound--;
-                setup.bugsRemainingText.text = setup.antsYetToBeFound.ToString();
+                setup.UpdateBanner();
                 if (setup.antsYetToBeFound == 0) { MetagameManager.Instance.EndMinigame(true); }
             }
             sprite.SetActive(false);
             StopCoroutine(RevertAfterDelay());
             StartCoroutine(RevertAfterDelay());
+            return result;
         }
 
         IEnumerator RevertAfterDelay() {

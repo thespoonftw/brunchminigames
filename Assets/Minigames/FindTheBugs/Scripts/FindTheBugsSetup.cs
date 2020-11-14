@@ -9,14 +9,14 @@ namespace FindTheBugs {
     public class FindTheBugsSetup : MonoBehaviour {
 
         public int numberOfAnts;
-        public int searchTime;
+        //public int searchTime;
         public Transform antSpawnLocation;
         public Transform antSpawnLocation2;
         public GameObject hidingPlacesParent;
         public GameObject antPrefab;
-        public DefeatTimer defeatTimer;
-        public Text timeRemainingText;
-        public Text bugsRemainingText;
+        //public DefeatTimer defeatTimer;
+        //public Text timeRemainingText;
+        //public Text bugsRemainingText;
         public Text bannerText;
 
         private bool isSpawnLeftSide = false;
@@ -24,12 +24,13 @@ namespace FindTheBugs {
         private List<GameObject> locations = new List<GameObject>();
         public int antsYetToHide;
         public int antsYetToBeFound;
+        private int deadPlayers = 0;
 
         void Start() {
-            defeatTimer.enabled = false;
-            defeatTimer.timeRemaining = searchTime;
-            bugsRemainingText.text = numberOfAnts.ToString();
-            timeRemainingText.text = searchTime.ToString();
+            //defeatTimer.enabled = false;
+            //defeatTimer.timeRemaining = searchTime;
+            //bugsRemainingText.text = numberOfAnts.ToString();
+            //timeRemainingText.text = searchTime.ToString();
             foreach (Transform t in hidingPlacesParent.transform) {
                 locations.Add(t.gameObject);
             }
@@ -54,9 +55,21 @@ namespace FindTheBugs {
         }
 
         public void StartHunting() {
-            defeatTimer.enabled = true;
-            bannerText.text = "Find the bugs!";
+            //defeatTimer.enabled = true;
+            UpdateBanner();
             GetComponent<PlayerControlSetup>().enabled = true;
+        }
+
+        public void UpdateBanner() {
+            bannerText.text = "Find " + antsYetToBeFound.ToString() + " bugs!";
+        }
+
+        public void KillPlayer(GameObject player) {
+            player.SetActive(false);
+            deadPlayers++;
+            if (deadPlayers == GetComponent<PlayerControlSetup>().Players.Count) {
+                MetagameManager.Instance.EndMinigame(false);
+            }
         }
 
     }
