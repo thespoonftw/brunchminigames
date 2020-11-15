@@ -11,10 +11,15 @@ public class MiniHoovers_Player : MonoBehaviour {
     public GameObject Visible;
     public GameObject Pointer;
     public float BounceVelocity;
+    public float AirParticleFrequency;
 
     private Player player;
     private Rigidbody2D r;
     private Vector3 startScale;
+    private ObjectPool airParticlePool;
+    private float timeBetweenAirParticles;
+    private float airParticleTimer = 0f;
+    private float airParticleSpawnRadius;
 
     void Start() {
         player = GetComponent<PlayerControlComponent>().GetPlayer();
@@ -27,6 +32,10 @@ public class MiniHoovers_Player : MonoBehaviour {
         r = GetComponent<Rigidbody2D>();
         r.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         startScale = Visible.transform.localScale;
+
+        airParticlePool = GetComponent<ObjectPool>();
+        timeBetweenAirParticles = 1f / AirParticleFrequency;
+        airParticleSpawnRadius = GetComponent<CircleCollider2D>().radius * 2f;
     }
 
     void ApplyFriction(float target) {
@@ -66,6 +75,13 @@ public class MiniHoovers_Player : MonoBehaviour {
             // Rotate.
             transform.Rotate(0f, 0f, RotateSpeed * Time.deltaTime);
             // r.velocity = Vector3.Lerp(r.velocity, Vector3.zero, 0.2f);
+        }
+
+        airParticleTimer += Time.deltaTime;
+        while (airParticleTimer >= timeBetweenAirParticles) {
+            airParticleTimer -= timeBetweenAirParticles;
+            GameObject g = airParticlePool.GetObject();
+            g.GetComponent<MiniHoovers_AirParticle>().SetTarget(gameObject, airParticleSpawnRadius);
         }
     }
 

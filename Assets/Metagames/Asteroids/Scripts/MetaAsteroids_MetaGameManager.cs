@@ -12,7 +12,6 @@ public struct MetaAsteroids_Phase {
 public class MetaAsteroids_MetaGameManager : MonoBehaviour {
     public MetaAsteroids_Phase[] Phases;
     public GameObject Wormhole;
-    public List<string> MinigameScenes;
     public GameObject Cutout;
 
     private MetaAsteroids_AsteroidsManager asteroidsManager;
@@ -28,11 +27,15 @@ public class MetaAsteroids_MetaGameManager : MonoBehaviour {
     private List<MetaAsteroids_Player> players = new List<MetaAsteroids_Player>();
     private bool waitingForNextPhase = false;
     private float nextPhaseTimer = 0f;
+    private MinigameGetter minigameGetter;
 
     void Start() {
         asteroidsManager = GameObject.Find("Asteroid Manager").GetComponent<MetaAsteroids_AsteroidsManager>();
         StartPhase(currentPhaseIndex);
         MetagameManager.OnMinigameEnd += MinigameEnd;
+
+        minigameGetter = Resources.Load<GameObject>("Minigame Getter").GetComponent<MinigameGetter>();
+        Debug.Log(minigameGetter.GetNextMinigameScene());
     }
 
     public void RegisterPlayer(MetaAsteroids_Player player) {
@@ -69,7 +72,7 @@ public class MetaAsteroids_MetaGameManager : MonoBehaviour {
     }
 
     String GetNextMinigame() {
-        return MinigameScenes[UnityEngine.Random.Range(0, MinigameScenes.Count - 1)];
+        return minigameGetter.GetNextMinigameScene();
     }
 
     public void ZoomOutComplete() {

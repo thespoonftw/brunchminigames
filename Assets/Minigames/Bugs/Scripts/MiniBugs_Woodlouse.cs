@@ -11,6 +11,8 @@ public class MiniBugs_Woodlouse : MonoBehaviour {
     private Vector3 groundVelocityDirection;
     private float stamina = 0f;
     private Vector3 groundVelocity = new Vector3(0f, 0f, 0f);
+    private float w;
+    private float h;
 
     public float Gravity = 9.8f;
     public float Bounciness = 0.2f;
@@ -27,6 +29,8 @@ public class MiniBugs_Woodlouse : MonoBehaviour {
     public float UnBalledUpFriction;
 
     void Start() {
+        w = Camera.main.orthographicSize * Screen.width / Screen.height;
+        h = Camera.main.orthographicSize;
         spriteBug = GetComponent<MiniBugs_SpriteBug>();
         stamina = MaxStamina;
     }
@@ -79,12 +83,12 @@ public class MiniBugs_Woodlouse : MonoBehaviour {
         }
 
         Vector3 nextPosition = transform.position + groundVelocity * Time.deltaTime;
-        if (nextPosition.x > 34f || nextPosition.x < -34f) {
+        if (nextPosition.x > w || nextPosition.x < -w) {
             groundVelocity.x *= -1f;
             groundVelocityDirection.x *= -1f;
             nextPosition.x = transform.position.x;
         }
-        if (nextPosition.y > 19.5f || nextPosition.y < -19.5f) {
+        if (nextPosition.y > h || nextPosition.y < -h) {
             groundVelocity.y *= -1f;
             groundVelocityDirection.y *= -1f;
             nextPosition.y = transform.position.y;

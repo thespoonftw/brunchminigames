@@ -500,6 +500,7 @@ MonoBehaviour:
   - {fileID: 1596066918}
   - {fileID: 1013882591}
   - {fileID: 763992645}
+  Players: []
 --- !u!4 &1333067877
 Transform:
   m_ObjectHideFlags: 0
