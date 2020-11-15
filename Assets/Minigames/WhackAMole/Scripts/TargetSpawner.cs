@@ -16,15 +16,22 @@ public class TargetSpawner : MonoBehaviour {
     public float TargetCreateThreshold;
     //Random number must exceed this to succesfully create a Target on tick
 
+    public float TargetCreatePeriod;
+    //Number of seconds between each TargetCreate check
+
+    public float TimeLeft;
+
     void Start() {
 
+        StartCoroutine(TargetSpawn());
+
     }
-    
-    void FixedUpdate() {
+    /*
+    void Update() {
 
         if(Targets.Count > 10) { return; }
 
-        Debug.Log(Players.Count);
+        //Debug.Log(Players.Count);
 
         float rand = Random.value;
 
@@ -32,9 +39,7 @@ public class TargetSpawner : MonoBehaviour {
 
         if (rand > TargetCreateThreshold) {
 
-            float DistFromPlayer;
-
-            Vector3 TargetPosition = new Vector3(0f, 0f, 0f);
+            Vector3 TargetPosition;
 
             var Distances = new List<float>();
 
@@ -53,12 +58,7 @@ public class TargetSpawner : MonoBehaviour {
                     Distances.Add(Vector3.Distance(p.transform.position, TargetPosition));
 
                 }
-                /*
-                Vector3 PlayerPosition = Player.transform.position;
-                Vector3 PlayerTargetDistance = PlayerPosition - TargetPosition;
-                DistFromPlayer = PlayerTargetDistance.magnitude;
-                */
-                //Get distance from Player to Proposed Target position
+                //Get distance from Players to Proposed Target position
                 
 
             } while (Distances.Min() < MinDistFromPlayer);
@@ -68,15 +68,68 @@ public class TargetSpawner : MonoBehaviour {
 
             Targets.Add(Target);
 
-            Target.GetComponent<TargetBehaviour>().Players = Players;
+            //Target.GetComponent<TargetBehaviour>().Players = Players;
             //Attach TargetBehaviour script to Target
-            
+
             //Debug.Log(TargetPosition);
+
 
         }
 
 
     }
+    */
+    IEnumerator TargetSpawn() {
 
+        do {
+
+            Debug.Log("Target spawn corountine started.");
+
+            if (Targets.Count < 10) {
+
+                float rand = Random.value;
+
+                Debug.Log(rand);
+
+                if (rand > TargetCreateThreshold) {
+
+                    Vector3 TargetPosition;
+
+                    var Distances = new List<float>();
+
+                    do {
+
+                        float xcoord = Floor(Random.value * 20f) - 10f;
+                        float zcoord = Floor(Random.value * 20f) - 10f;
+                        //Independently create x and z coords - round to give pre-determined positions
+
+                        TargetPosition = new Vector3(xcoord, 0.4f, zcoord);
+                        //Proposed Target position
+
+
+                        foreach (var p in Players) {
+
+                            Distances.Add(Vector3.Distance(p.transform.position, TargetPosition));
+
+                        }
+                        //Get distance from Players to Proposed Target position
+
+
+                    } while (Distances.Min() < MinDistFromPlayer);
+
+                    var Target = Instantiate(TargetPrefab, TargetPosition, Quaternion.identity);
+                    //Create Target from Prefab
+
+                    Targets.Add(Target);
+
+                }
+            }
+
+            yield return new WaitForSeconds(1);
+            Debug.Log("Targetcreate check done");
+            TimeLeft = GameObject.Find("Timer Text").GetComponent<TimeText>().TimeLeft;
+
+        } while (TimeLeft > 0);
+    }
 
 }

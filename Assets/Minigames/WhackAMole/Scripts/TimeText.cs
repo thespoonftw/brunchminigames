@@ -9,27 +9,36 @@ public class TimeText : MonoBehaviour {
     public Text TimerText;
 
     int GameTime;
-    int TimeLeft;
+    public int TimeLeft;
 
     void Start() {
-        
+
+        StartCoroutine(TimeTextGenerate());
+
     }
 
-    void FixedUpdate() {
 
-        TimeLeft = TotalGameTime - GameTime;
+    IEnumerator TimeTextGenerate() {
 
-        if (TimeLeft > 0) {
+        for (int i = 0; i <= TotalGameTime; i++) {
 
-            TimerText.text = "Time remaining: " + TimeLeft + "s";
+            TimeLeft = TotalGameTime - GameTime;
 
-            GameTime++;
+            if (TimeLeft > 0) {
 
-        }
+                TimerText.text = "Time remaining: " + TimeLeft + "s";
 
-        else {
+                GameTime++;
 
-            TimerText.text = "Time up!";
+            }
+
+            else {
+
+                TimerText.text = "Time up!";
+
+            }
+
+            yield return new WaitForSeconds(1);
 
         }
 

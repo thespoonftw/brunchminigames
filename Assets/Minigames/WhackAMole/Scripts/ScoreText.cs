@@ -11,32 +11,35 @@ public class ScoreText : MonoBehaviour {
 
     public bool wait = true;
 
+    public float TimeLeft;
+
     void Start() {
-        
-    }
 
-    void Update() {
-
-        if ((NoTargetsRequired - Score) > 0) {
-
-            TargetText.text = "Targets remaining: " + (NoTargetsRequired - Score);
-
-        }
-
-        else {
-
-            TargetText.text = "Targets remaining: 0";
-
-        }
-
-        WaitRoutine(wait);
+        StartCoroutine(TextGenerate());
 
     }
 
+    IEnumerator TextGenerate() {
 
-    IEnumerator WaitRoutine(bool w) {
+        do {
 
-        yield return new WaitWhile(() => w == true);
+
+            if ((NoTargetsRequired - Score) > 0) {
+
+                TargetText.text = "Targets remaining: " + (NoTargetsRequired - Score);
+
+            }
+
+            else {
+
+                TargetText.text = "Targets remaining: 0";
+
+            }
+
+            yield return new WaitWhile(() => wait == true);
+            TimeLeft = GameObject.Find("Timer Text").GetComponent<TimeText>().TimeLeft;
+
+        } while (TimeLeft > 0);
 
     }
 }
