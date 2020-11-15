@@ -142,6 +142,8 @@ MonoBehaviour:
   Wave2SpeedMax: 6
   Wave2SizeChangeMin: -0.025
   Wave2SizeChangeMax: 0.025
+  Back: {fileID: 7008962182807144410}
+  OutlineThickness: 0.5
 --- !u!1 &7008962182807144410
 GameObject:
   m_ObjectHideFlags: 0

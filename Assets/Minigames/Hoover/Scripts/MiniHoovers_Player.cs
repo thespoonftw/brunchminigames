@@ -12,6 +12,12 @@ public class MiniHoovers_Player : MonoBehaviour {
     public GameObject Pointer;
     public float BounceVelocity;
     public float AirParticleFrequency;
+    public float AirParticleFrequencyWhileSucking;
+    public bool BoostAdditive = false;
+    public float EatGrowAmount = 0.25f;
+    public float CollideGrowAmount = 0.25f;
+    public float EatGrowReturnLerpSpeed = 0.3f;
+    public float CollideGrowReturnLerpSpeed = 0.25f;
 
     private Player player;
     private Rigidbody2D r;
@@ -20,6 +26,9 @@ public class MiniHoovers_Player : MonoBehaviour {
     private float timeBetweenAirParticles;
     private float airParticleTimer = 0f;
     private float airParticleSpawnRadius;
+    private float eatGrowCurrent = 0f;
+    private float collideGrowCurrent = 0f;
+    private int suckingCount = 0;
 
     void Start() {
         player = GetComponent<PlayerControlComponent>().GetPlayer();
@@ -48,12 +57,19 @@ public class MiniHoovers_Player : MonoBehaviour {
     }
 
     void Update() {
-        Visible.transform.localScale = Vector3.Lerp(Visible.transform.localScale, startScale, 0.1f);
+        eatGrowCurrent = Mathf.Lerp(eatGrowCurrent, 0f, EatGrowReturnLerpSpeed);
+        collideGrowCurrent = Mathf.Lerp(collideGrowCurrent, 0f, CollideGrowReturnLerpSpeed);
+
+        Visible.transform.localScale = startScale * (1f + eatGrowCurrent + collideGrowCurrent);
 
         if (player.WasActionButtonPressedThisFrame()) {
             // Set initial boost speed.
             r.constraints = RigidbodyConstraints2D.FreezeRotation;
-            r.velocity = r.velocity + (Vector2) transform.up * InitialBoostSpeed;
+            if (BoostAdditive) {
+                r.velocity = r.velocity + (Vector2)transform.up * InitialBoostSpeed;
+            } else {
+                r.velocity = (Vector2)transform.up * InitialBoostSpeed;
+            }
         } else if (player.IsActionButtonPressed()) {
             // Friction to move speed (or lerp)
             if (r.velocity.magnitude < MoveSpeed) {
@@ -78,6 +94,7 @@ public class MiniHoovers_Player : MonoBehaviour {
         }
 
         airParticleTimer += Time.deltaTime;
+        timeBetweenAirParticles = 1f / (suckingCount == 0 ? AirParticleFrequency : AirParticleFrequencyWhileSucking);
         while (airParticleTimer >= timeBetweenAirParticles) {
             airParticleTimer -= timeBetweenAirParticles;
             GameObject g = airParticlePool.GetObject();
@@ -88,7 +105,7 @@ public class MiniHoovers_Player : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D col) {
         MiniHoovers_Slime slime = col.gameObject.GetComponent<MiniHoovers_Slime>();
         if (slime == null) {
-            Visible.transform.localScale *= 1.25f;
+            collideGrowCurrent = CollideGrowAmount;
             Vector3 normal = (Vector3)col.GetContact(0).normal;
             if (player.IsActionButtonPressed() && MoveSpeed > 0f) {
                 transform.up = transform.up - normal * 2f * Vector3.Dot(transform.up, normal);
@@ -107,9 +124,15 @@ public class MiniHoovers_Player : MonoBehaviour {
         }
     }
 
+    public void OnEat() {
+        eatGrowCurrent = EatGrowAmount;
+        suckingCount--;
+    }
+
     void OnTriggerEnter2D(Collider2D col) {
         MiniHoovers_Slime slime = col.gameObject.GetComponent<MiniHoovers_Slime>();
         if (slime != null) {
+            suckingCount++;
             slime.GetSucked(this);
         }
     }

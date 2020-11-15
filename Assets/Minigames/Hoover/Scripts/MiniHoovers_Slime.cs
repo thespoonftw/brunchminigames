@@ -20,6 +20,8 @@ public class MiniHoovers_Slime : MonoBehaviour {
 
     public float Wave2SizeChangeMin;
     public float Wave2SizeChangeMax;
+    public GameObject Back;
+    public float OutlineThickness = 0.25f;
 
     private Vector3 startScale;
     private MiniHoovers_SlimeCounter slimeCounter;
@@ -32,6 +34,11 @@ public class MiniHoovers_Slime : MonoBehaviour {
         wave2Speed = Random.Range(Wave2SpeedMin, Wave2SpeedMax);
         wave1T = Random.Range(0, 10f);
         wave2T = Random.Range(0, 10f);
+
+        // When this scale is 1, scale of child is 1.2
+        // When this scale is 2, 
+
+        // so scale is 1 + 0.2 / scale.
     }
 
     void Start() {
@@ -47,7 +54,8 @@ public class MiniHoovers_Slime : MonoBehaviour {
 
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * 0.25f, 0.1f);
 
-            if (offset.magnitude < 0.1f) {
+            if (offset.magnitude < transform.localScale.x * 0.5f) {
+                targetPlayer.OnEat();
                 Destroy(gameObject);
             }
         } else {
@@ -68,6 +76,8 @@ public class MiniHoovers_Slime : MonoBehaviour {
 
             transform.localScale = startScale * (s1 + s2);
         }
+
+        Back.transform.localScale = Vector3.one * (1f + OutlineThickness / transform.localScale.x);
     }
 
     public void GetSucked(MiniHoovers_Player player) {

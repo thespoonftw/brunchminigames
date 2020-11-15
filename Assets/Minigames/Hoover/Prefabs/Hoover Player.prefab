@@ -369,6 +369,12 @@ MonoBehaviour:
   Pointer: {fileID: 1610329189467632766}
   BounceVelocity: 10
   AirParticleFrequency: 15
+  AirParticleFrequencyWhileSucking: 60
+  BoostAdditive: 0
+  EatGrowAmount: 0.1
+  CollideGrowAmount: 0.25
+  EatGrowReturnLerpSpeed: 0.05
+  CollideGrowReturnLerpSpeed: 0.2
 --- !u!114 &-8681769082002290150
 MonoBehaviour:
   m_ObjectHideFlags: 0
