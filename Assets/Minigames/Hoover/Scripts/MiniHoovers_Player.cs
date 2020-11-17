@@ -29,6 +29,7 @@ public class MiniHoovers_Player : MonoBehaviour {
     private float eatGrowCurrent = 0f;
     private float collideGrowCurrent = 0f;
     private int suckingCount = 0;
+    private bool spawned = false;
 
     void Start() {
         player = GetComponent<PlayerControlComponent>().GetPlayer();
@@ -45,6 +46,8 @@ public class MiniHoovers_Player : MonoBehaviour {
         airParticlePool = GetComponent<ObjectPool>();
         timeBetweenAirParticles = 1f / AirParticleFrequency;
         airParticleSpawnRadius = GetComponent<CircleCollider2D>().radius * 2f;
+
+        Debug.Log("hi!");
     }
 
     void ApplyFriction(float target) {
@@ -57,6 +60,7 @@ public class MiniHoovers_Player : MonoBehaviour {
     }
 
     void Update() {
+        spawned = true;
         eatGrowCurrent = Mathf.Lerp(eatGrowCurrent, 0f, EatGrowReturnLerpSpeed);
         collideGrowCurrent = Mathf.Lerp(collideGrowCurrent, 0f, CollideGrowReturnLerpSpeed);
 
@@ -133,7 +137,7 @@ public class MiniHoovers_Player : MonoBehaviour {
         MiniHoovers_Slime slime = col.gameObject.GetComponent<MiniHoovers_Slime>();
         if (slime != null) {
             suckingCount++;
-            slime.GetSucked(this);
+            slime.GetSucked(this, spawned);
         }
     }
 }

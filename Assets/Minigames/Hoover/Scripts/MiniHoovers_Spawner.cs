@@ -29,6 +29,7 @@ public class MiniHoovers_Spawner : MonoBehaviour {
 
         slimeCounter = Camera.main.GetComponent<MiniHoovers_SlimeCounter>();
 
+        Debug.Log("ok");
         GenerateGrass();
     }
 

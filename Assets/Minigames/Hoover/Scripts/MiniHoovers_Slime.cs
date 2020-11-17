@@ -22,6 +22,7 @@ public class MiniHoovers_Slime : MonoBehaviour {
     public float Wave2SizeChangeMax;
     public GameObject Back;
     public float OutlineThickness = 0.25f;
+    public GameObject SlimeLeftover;
 
     private Vector3 startScale;
     private MiniHoovers_SlimeCounter slimeCounter;
@@ -80,9 +81,19 @@ public class MiniHoovers_Slime : MonoBehaviour {
         Back.transform.localScale = Vector3.one * (1f + OutlineThickness / transform.localScale.x);
     }
 
-    public void GetSucked(MiniHoovers_Player player) {
+    public void GetSucked(MiniHoovers_Player player, bool spawned) {
         if (claimed) return;
         claimed = true;
+
+        if (!spawned) {
+            Destroy(gameObject);
+            slimeCounter.MinusSlime();
+            return;
+        }
+
+        GameObject leftover = GameObject.Instantiate(SlimeLeftover);
+        leftover.transform.localScale = transform.localScale;
+        leftover.transform.position = transform.position + Vector3.forward * 0.1f;
 
         offset = transform.position - player.transform.position;
         offset.z = 0f;

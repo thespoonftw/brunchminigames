@@ -210,11 +210,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shadow: {fileID: 8170231712525112398}
-  ShadowZTarget: 7
-  UseShadowTarget: 0
+  ShadowZTarget: 8
+  UseShadowTarget: 1
   Bugs:
   - {fileID: 8170231712151820023}
   Altitude: 0
+  BlobShadow: 0
 --- !u!114 &8170231712439579814
 MonoBehaviour:
   m_ObjectHideFlags: 0
